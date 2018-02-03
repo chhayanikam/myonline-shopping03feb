@@ -16,10 +16,9 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @Configuration
 @ComponentScan(basePackages={"com.niit.myonlineshoppingbackend.dto"})
 @EnableTransactionManagement
-
 public class HibernateConfig {
 	// Change the below based on the DBMS you choose
-	private final static String DATABASE_URL = "jdbc:h2:tcp://localhost/~/onlineshopping";
+	private final static String DATABASE_URL = "jdbc:h2:~/onlineshopping";
 	private final static String DATABASE_DRIVER = "org.h2.Driver";
 	private final static String DATABASE_DIALECT = "org.hibernate.dialect.H2Dialect";
 	private final static String DATABASE_USERNAME = "sa";
@@ -37,7 +36,7 @@ public class HibernateConfig {
 		dataSource.setUsername(DATABASE_USERNAME);
 		dataSource.setPassword(DATABASE_PASSWORD);
 				
-		
+		System.out.println("db connected......");
 		return dataSource;
 		
 	}

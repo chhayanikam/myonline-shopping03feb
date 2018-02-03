@@ -1,17 +1,17 @@
 package com.niit.myonlineshopping.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.niit.myonlineshoppingbackend.dao.CategoryDAO;
+//import com.niit.myonlineshoppingbackend.dao.CategoryDAO;
 
 @Controller
 public class PageController {
 	// fetch the categories from the backend project
-	@Autowired
-	private CategoryDAO categoryDAO;
+	//@Autowired
+	//private CategoryDAO categoryDAO;
 	
 	
 	@RequestMapping(value={"/","home","/index"})
@@ -21,7 +21,7 @@ public class PageController {
 		mv.addObject("title","Home");
 		
 		// passing the list of Object
-		mv.addObject("categories",categoryDAO.list());
+	//	mv.addObject("categories",categoryDAO.list());
 		mv.addObject("userClickHome",true);
 		return mv;
 		

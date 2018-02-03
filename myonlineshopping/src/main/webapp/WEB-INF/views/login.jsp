@@ -1,12 +1,43 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
-</head>
-<body>
-  This is Login
-</body>
-</html>
+<div class="container">
+        <div class="row centered-form">
+        <div class="col-sm-8 col-sm-offset-2">
+        	<div class="panel panel-default">
+        		<div class="panel-heading" style=" background: #11B09B; ">
+			    		<h3 class="panel-title">Login Form <small>Please fill the form</small></h3>
+			 			</div>
+			 			<div class="panel-body">
+			    		<form role="form">
+			    			<div class="row">
+			    				<div class="col-sm-6 col-sm-offset-3">
+			    					<div class="form-group">
+			                			<input type="text" name="first_name" id="first_name" class="form-control" placeholder="Email ID">
+			    					</div>
+			    				</div>
+			    			</div>
+			    				
+
+			    			
+
+			    			<div class="row">
+			    				<div class="col-sm-6 col-sm-offset-3">
+			    					<div class="form-group">
+			    						<input type="password" name="password" id="mobile" class="form-control" placeholder="Password">
+			    					</div>
+			    				</div>
+			    			</div>
+
+					
+					<div class="row">	
+			    		<div class="col-sm-6  col-sm-offset-3">
+			    			<div class="form-group">			    			
+			    				<input type="submit" value="Login" class="btn btn-info btn-block" style=" background: #11B09B; ">
+			    			</div>
+			    		</div>
+			    	</div>
+			    		
+			    		</form>
+			    	</div>
+	    		</div>
+    		</div>
+    	</div>
+    </div>
