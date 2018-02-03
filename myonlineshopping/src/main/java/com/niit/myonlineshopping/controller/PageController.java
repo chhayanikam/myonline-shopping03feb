@@ -5,13 +5,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.niit.myonlineshoppingbackend.dao.CategoryDao;
+import com.niit.myonlineshoppingbackend.dao.CategoryDAO;
 
 @Controller
 public class PageController {
 	// fetch the categories from the backend project
 	@Autowired
-	private CategoryDao categoryDAO;
+	private CategoryDAO categoryDAO;
 	
 	
 	@RequestMapping(value={"/","home","/index"})
