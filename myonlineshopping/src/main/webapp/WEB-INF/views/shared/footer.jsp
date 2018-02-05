@@ -1,9 +1,7 @@
-
-
-<!-- jQuery library -->
+<!-- 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-<!-- Latest compiled JavaScript -->
+Latest compiled JavaScript
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,7 +9,6 @@
 
 <style>
 
-<!--Style for adding icons on footer starts here -->
 .fa {
   padding: 20px;
   font-size: 30px;
@@ -49,7 +46,7 @@
   background: #bb0000;
   color: white;
 }
-<!-- Icons end here-->
+
 
 </style>
 
@@ -68,3 +65,40 @@
     
     </ul>
 </div>
+ -->
+ 
+  <div class="footer" style="background-color:#242424; color:white;">
+ <div class="container">
+    <div class="row ">
+      
+      <div class="col-md-4">
+         <h3>Important Links</h3>
+         
+           <p><a href="shop/clothing/dresses/anarkali-1">Dresses</a></p>
+           <p><a href="shop/clothing/dupatta/hand-painted%20floral-5">Dupatta</a></p>
+           <p><a href="shop/clothing/sarees/cotton%20sarees-7">Sarees</a></p>
+           <p><a href="shop/clothing/skirt/black%20-%20white-9">Skirt</a></p>
+           <p><a href="shop/clothing/tops/tops-14">Tops</a></p>
+      
+       </div>
+       <div class="col-md-4">
+        <h3 class="hidden-xs">&nbsp;</h3>
+        <p>About Pirona</p>
+        
+         <p><a href="return_cancellations.php">Return & Cancellations</a></p>
+         <p><a href="shipping_policy.php">Shipping Policy</a></p>
+         <p><a href="privacy_policy.php">Privacy Policy</a></p>
+
+       </div>
+       <div class="col-md-4 contact">
+          <h3 class="hidden-xs">&nbsp;</h3>
+        <p> <a href="mailto:info@pirona.in">info@pirona.in</a></p>
+        <div id="social">
+     <a target="_blank" href=""><i class="fa fa-twitter"></i> </a>             
+     <a target="_blank" href=""><i class="fa fa-facebook"></i> </a>            
+     <a target="_blank" href=""><i class="fa fa-google-plus"></i> </a>        
+    </div>
+       </div>
+      </div>
+    </div>
+ </div>

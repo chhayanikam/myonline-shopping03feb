@@ -2,10 +2,10 @@
 	<div class="container">
 		<div class="row">
 
-			<div class="col-md-3">
+			<%-- <div class="col-md-3">
 			  <%@include file="./shared/sidebar.jsp" %>
-			</div>
-			<div class="col-md-9">
+			</div> --%>
+			<div class="col-md-12">
 			<div class="slideshow-container">
 				<!-- Image slider end here -->
 				<div id="myCarousel" class="carousel slide" data-ride="carousel">
@@ -23,11 +23,11 @@
 						</div>
 
 						<div class="item">
-							<img src="" alt="Scroll 2" style="width: 100%;">
+							<img src="http://pirona.in/image/Off%20white%20self-design%20kota.jpg" alt="Scroll 2" style="width: 100%;">
 						</div>
 
 						<div class="item">
-							<img src="" alt="Scroll 3" style="width: 100%;">
+							<img src="http://pirona.in/image/Pirona%20Image%20(2).jpg" alt="Scroll 3" style="width: 100%;">
 						</div>
 					</div>
 
@@ -47,5 +47,3 @@
 		</div>
 		</div>
 	</div>
-</body>
-</html>

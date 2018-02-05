@@ -6,7 +6,7 @@
 			    		<h3 class="panel-title">Registration Form <small>Please fill the form</small></h3>
 			 			</div>
 			 			<div class="panel-body">
-			    		<form role="form">
+			    		<sf:form role="form">
 			    			<div class="row">
 			    				<div class="col-sm-6">
 			    					<div class="form-group">
@@ -58,7 +58,7 @@
 			    		</div>
 			    	</div>
 			    		
-			    		</form>
+			    		</sf:form>
 			    	</div>
 	    		</div>
     		</div>

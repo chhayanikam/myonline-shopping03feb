@@ -1,3 +1,4 @@
+<%@taglib prefix="sf" uri="http://www.springframework.org/tags/form"%>
 <div class="container">
         <div class="row centered-form">
         <div class="col-sm-8 col-sm-offset-2">
@@ -6,22 +7,18 @@
 			    		<h3 class="panel-title">Login Form <small>Please fill the form</small></h3>
 			 			</div>
 			 			<div class="panel-body">
-			    		<form role="form">
+			    		<sf:form role="form">
 			    			<div class="row">
 			    				<div class="col-sm-6 col-sm-offset-3">
 			    					<div class="form-group">
-			                			<input type="text" name="first_name" id="first_name" class="form-control" placeholder="Email ID">
+			                			<sf:input type="text" path="firstName" id="firstName" class="form-control" placeholder="Email ID" />
 			    					</div>
 			    				</div>
 			    			</div>
-			    				
-
-			    			
-
-			    			<div class="row">
+			    				<div class="row">
 			    				<div class="col-sm-6 col-sm-offset-3">
 			    					<div class="form-group">
-			    						<input type="password" name="password" id="mobile" class="form-control" placeholder="Password">
+			    						<sf:input type="password" path="password" id="mobile" class="form-control" placeholder="Password" />
 			    					</div>
 			    				</div>
 			    			</div>
@@ -30,12 +27,12 @@
 					<div class="row">	
 			    		<div class="col-sm-6  col-sm-offset-3">
 			    			<div class="form-group">			    			
-			    				<input type="submit" value="Login" class="btn btn-info btn-block" style=" background: #11B09B; ">
+			    				<sf:input type="submit" value="Login"  path="" class="btn btn-info btn-block" style="background: #11B09B;" />
 			    			</div>
 			    		</div>
 			    	</div>
 			    		
-			    		</form>
+			    		</sf:form>
 			    	</div>
 	    		</div>
     		</div>
