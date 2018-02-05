@@ -4,13 +4,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-//import com.niit.myonlineshoppingbackend.dao.*;
+import com.niit.myonlineshoppingbackend.dao.*;
+import com.niit.myonlineshoppingbackend.daoImpl.*;
 
 @Controller
 public class PageController {
 	// fetch the categories from the backend project
-	//@Autowired
-  // private ProductDAO productDAO; 
+@Autowired
+  private ProductDAOImpl  productDAO; 
 	
 	
 	@RequestMapping(value={"/","home","/index"})
