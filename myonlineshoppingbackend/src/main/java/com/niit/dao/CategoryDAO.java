@@ -1,9 +1,11 @@
-package com.niit.myonlineshoppingbackend.dao;
+package com.niit.dao;
 
 import java.util.List;
 
-import com.niit.myonlineshoppingbackend.dto.Category;
+import org.springframework.stereotype.Service;
 
+import com.niit.model.Category;
+//@Service
 public interface CategoryDAO {
 	Category get(int id);
 	List<Category> list();

@@ -1,7 +1,7 @@
-package com.niit.myonlineshoppingbackend.dao;
+package com.niit.dao;
 import java.util.List;
 
-import com.niit.myonlineshoppingbackend.dto.Product;
+import com.niit.model.Product;
 
 public interface ProductDAO {
 	Product get(int productId);

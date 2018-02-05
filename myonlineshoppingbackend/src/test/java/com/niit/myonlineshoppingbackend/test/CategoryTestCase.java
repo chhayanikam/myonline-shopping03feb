@@ -6,8 +6,8 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import com.niit.myonlineshoppingbackend.dao.CategoryDAO;
-import com.niit.myonlineshoppingbackend.dto.Category;
+import com.niit.dao.CategoryDAO;
+import com.niit.model.Category;
 
 public class CategoryTestCase {
 

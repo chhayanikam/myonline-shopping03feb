@@ -1,4 +1,4 @@
-package com.niit.myonlineshoppingbackend.daoImpl;
+package com.niit.daoImpl;
 
 import java.util.List;
 
@@ -9,11 +9,13 @@ import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.niit.myonlineshoppingbackend.dao.CategoryDAO;
-import com.niit.myonlineshoppingbackend.dto.Category;
+import com.niit.dao.CategoryDAO;
+import com.niit.model.Category;
+//@Service
+//@Repository("categoryDAO")
+//@Transactional
 @Service
-@Repository("categoryDAO")
-@Transactional
+@Repository()
 public class CategoryDAOImpl implements CategoryDAO{
 
 	@Autowired
@@ -25,7 +27,7 @@ public class CategoryDAOImpl implements CategoryDAO{
 
 	}
 
-	@Override
+	
 	@Transactional
 	public List<Category> list() {
 String selectActiveCategory = "FROM Category WHERE active = :active";

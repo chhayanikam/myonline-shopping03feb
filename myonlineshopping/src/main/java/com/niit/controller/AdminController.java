@@ -1,4 +1,4 @@
-package com.niit.myonlineshopping.controller;
+package com.niit.controller;
 
 import java.util.List;
 

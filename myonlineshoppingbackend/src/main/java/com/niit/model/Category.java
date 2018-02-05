@@ -1,4 +1,4 @@
-package com.niit.myonlineshoppingbackend.dto;
+package com.niit.model;
 
 import java.io.Serializable;
 
@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 
 
 @Entity
-@Table
+@Table(name="CATEGORY")
 @Component
 public class Category implements Serializable{
 	private static final long serialVersionUID = 1L;

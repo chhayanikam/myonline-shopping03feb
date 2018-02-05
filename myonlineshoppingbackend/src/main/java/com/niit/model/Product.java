@@ -1,5 +1,5 @@
 // incomplete
-package com.niit.myonlineshoppingbackend.dto;
+package com.niit.model;
 
 import java.io.Serializable;
 import java.util.UUID;

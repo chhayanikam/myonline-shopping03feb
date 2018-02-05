@@ -1,20 +1,24 @@
-package com.niit.myonlineshopping.controller;
+package com.niit.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-import com.niit.myonlineshoppingbackend.dao.*;
-import com.niit.myonlineshoppingbackend.daoImpl.*;
+
+import com.niit.dao.CategoryDAO;
+import com.niit.dao.ProductDAO;
+import com.niit.daoImpl.*;
 
 @Controller
 public class PageController {
 	// fetch the categories from the backend project
-@Autowired
-  private ProductDAOImpl  productDAO; 
+	@Autowired
+	 CategoryDAO categoryDAO;
 	
+	@Autowired
+	 ProductDAO productDAO;	
 	
-	@RequestMapping(value={"/","home","/index"})
+	/*@RequestMapping(value={"/","home","/index"})
 	public ModelAndView index()
 	{
 		ModelAndView mv=new ModelAndView("Page");
@@ -66,18 +70,7 @@ public class PageController {
 		
 	}
 	
-	@RequestMapping(value="/login")
-	public ModelAndView login()
-	{
-		ModelAndView mv=new ModelAndView("Page");
-		mv.addObject("title","Login");
-		
-		// passing the list of Object
-		//mv.addObject("categories",categoryDAO.list());
-		mv.addObject("userClickLogin",true);
-		return mv;
-		
-	}
+	
 	@RequestMapping(value="/about")
 	public ModelAndView about()
 	{
@@ -96,4 +89,19 @@ public class PageController {
 		return mv;
 		
 	}
+
+	
+*/	@RequestMapping(value="/")
+	public String indexFinal()
+	{
+		return "home";
+	}
+@RequestMapping(value="/login")
+public String login()
+{
+	return "login";
+	
 }
+	
+	
+	}

@@ -6,8 +6,8 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import com.niit.myonlineshoppingbackend.dao.ProductDAO;
-import com.niit.myonlineshoppingbackend.dto.Product;
+import com.niit.dao.ProductDAO;
+import com.niit.model.Product;
 
 public class ProductTestCase {
 private static AnnotationConfigApplicationContext context;

@@ -1,4 +1,4 @@
-package com.niit.myonlineshoppingbackend.daoImpl;
+package com.niit.daoImpl;
 
 import java.util.List;
 import java.util.List;
@@ -8,8 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.niit.myonlineshoppingbackend.dao.ProductDAO;
-import com.niit.myonlineshoppingbackend.dto.Product;
+import com.niit.dao.ProductDAO;
+import com.niit.model.Product;
 
 @Repository("productDAO")
 @Transactional
