@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+
 <!-- 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
@@ -66,39 +69,69 @@ Latest compiled JavaScript
     </ul>
 </div>
  -->
- 
-  <div class="footer" style="background-color:#242424; color:white;">
- <div class="container">
-    <div class="row ">
-      
-      <div class="col-md-4">
-         <h3>Important Links</h3>
-         
-           <p><a href="shop/clothing/dresses/anarkali-1">Dresses</a></p>
-           <p><a href="shop/clothing/dupatta/hand-painted%20floral-5">Dupatta</a></p>
-           <p><a href="shop/clothing/sarees/cotton%20sarees-7">Sarees</a></p>
-           <p><a href="shop/clothing/skirt/black%20-%20white-9">Skirt</a></p>
-           <p><a href="shop/clothing/tops/tops-14">Tops</a></p>
-      
-       </div>
-       <div class="col-md-4">
-        <h3 class="hidden-xs">&nbsp;</h3>
-        <p>About Pirona</p>
-        
-         <p><a href="return_cancellations.php">Return & Cancellations</a></p>
-         <p><a href="shipping_policy.php">Shipping Policy</a></p>
-         <p><a href="privacy_policy.php">Privacy Policy</a></p>
 
-       </div>
-       <div class="col-md-4 contact">
-          <h3 class="hidden-xs">&nbsp;</h3>
-        <p> <a href="mailto:info@pirona.in">info@pirona.in</a></p>
-        <div id="social">
-     <a target="_blank" href=""><i class="fa fa-twitter"></i> </a>             
-     <a target="_blank" href=""><i class="fa fa-facebook"></i> </a>            
-     <a target="_blank" href=""><i class="fa fa-google-plus"></i> </a>        
-    </div>
-       </div>
-      </div>
-    </div>
- </div>
+<div class="footer" style="background-color: #242424; color: white;">
+	<div class="container">
+		<div class="row ">
+
+			<div class="col-md-4">
+				<h3>Important Links</h3>
+
+				<p>
+					<a href="shop/clothing/dresses/anarkali-1">Dresses</a>
+				</p>
+				<p>
+					<a href="shop/clothing/dupatta/hand-painted%20floral-5">Dupatta</a>
+				</p>
+				<p>
+					<a href="shop/clothing/sarees/cotton%20sarees-7">Sarees</a>
+				</p>
+				<p>
+					<a href="shop/clothing/skirt/black%20-%20white-9">Skirt</a>
+				</p>
+				<p>
+					<a href="shop/clothing/tops/tops-14">Tops</a>
+				</p>
+
+			</div>
+			<div class="col-md-4">
+				<h3 class="hidden-xs">&nbsp;</h3>
+				<p>About us</p>
+
+				<p>
+					<a href="return_cancellations.php">Return & Cancellations</a>
+				</p>
+				<p>
+					<a href="shipping_policy.php">Shipping Policy</a>
+				</p>
+				<p>
+					<a href="privacy_policy.php">Privacy Policy</a>
+				</p>
+
+			</div>
+			<div class="col-md-4 contact">
+				<h3 class="hidden-xs">&nbsp;</h3>
+				<p>
+					<a href="mailto:info@fashionbazar.in">info@fashionbazar.in</a>
+				</p>
+				<div id="social">
+					<a target="_blank" href=""><i class="fa fa-twitter"></i> </a> <a
+						target="_blank" href=""><i class="fa fa-facebook"></i> </a> <a
+						target="_blank" href=""><i class="fa fa-google-plus"></i> </a>
+					<ul class="nav navbar-nav navbar-left">
+						<li><a href="#"><span
+								class="glyphicon glyphicon-envelope"></span> Contact Us</a></li>
+						<li><a href="#">About Us</a></li>
+						<li><a href="#" class="fa fa-facebook"></a></li>
+						<li><a href="#" class="fa fa-twitter"></a></li>
+						<li><a href="#" class="fa fa-google"></a></li>
+						<li><a href="#" class="fa fa-linkedin"></a></li>
+						<li><a href="#" class="fa fa-youtube"></a></li>
+
+					</ul>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

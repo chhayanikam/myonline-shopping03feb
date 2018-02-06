@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+
 <%@ taglib prefix ="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix ="spring" uri="http://www.springframework.org/tags" %>
 <!DOCTYPE html>
@@ -9,7 +12,7 @@
  
 }
 </style>
-<title> Cloud Waiters</title>
+<title> Home Page</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta charset="utf-8">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -39,15 +42,15 @@
 					<!-- Wrapper for slides -->
 					<div class="carousel-inner">
 						<div class="item active">
-							<img src="http://pirona.in/image/Pirona%20Image.jpg" alt="Scroll 1" style="width: 100%;">
+							<img src="<spring:url value="resources/scroll4.jpg/"></spring:url>" alt="Scroll 1" style="width: 100%;">
 						</div>
 
 						<div class="item">
-							<img src="<spring:url value="resources/scroll1.jpg/"></spring:url>" alt="Scroll 2" style="width: 100%;">
+							<img src="<spring:url value="resources/scroll2.jpg/"></spring:url>" alt="Scroll 2" style="width: 100%;">
 						</div>
 
 						<div class="item">
-							<img src="http://pirona.in/image/Pirona%20Image%20(2).jpg" alt="Scroll 3" style="width: 100%;">
+							<img src="<spring:url value="resources/scroll3.jpg/"></spring:url>" alt="Scroll 3" style="width: 100%;">
 						</div>
 					</div>
 
@@ -63,6 +66,7 @@
 					</a>
 				</div>
 				<!-- Image slider end here -->
+				
 			</div>
 		</div>
 		</div>

@@ -102,6 +102,22 @@ public String login()
 	return "login";
 	
 }
+@RequestMapping(value="/about")
+public String about()
+{
+	return "about";
 	
+}	
+@RequestMapping(value="/contact")
+public String contact()
+{
+	return "contact";
 	
+}	
+@RequestMapping(value="/signup")
+public String signup()
+{
+	return "signup";
+	
+}	
 	}
