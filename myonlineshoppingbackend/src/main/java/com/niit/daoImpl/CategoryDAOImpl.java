@@ -13,7 +13,7 @@ import com.niit.dao.CategoryDAO;
 import com.niit.model.Category;
 
 
-//@Transactional
+@Transactional
 @Service
 @Repository("categoryDAO")
 public class CategoryDAOImpl implements CategoryDAO{
@@ -28,7 +28,7 @@ public class CategoryDAOImpl implements CategoryDAO{
 	}
 
 	
-	@Transactional
+//	@Transactional
 	public List<Category> list() {
 String selectActiveCategory = "FROM Category WHERE active = :active";
 		

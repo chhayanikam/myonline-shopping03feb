@@ -2,14 +2,21 @@ package com.niit.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.niit.dao.*;
-import com.niit.model.*;
-import com.niit.daoImpl.*;
+import com.niit.dao.CategoryDAO;
+import com.niit.dao.ProductDAO;
+import com.niit.dao.SupplierDAO;
+import com.niit.dao.UserDAO;
+import com.niit.model.Category;
+import com.niit.model.Product;
+import com.niit.model.Supplier;
+import com.niit.model.User;
 
 @Controller
 public class PageController {
@@ -20,6 +27,9 @@ public class PageController {
 	@Autowired
 	 ProductDAO productDAO;	
 
+	@Autowired
+	SupplierDAO supplierDAO;
+	
 @Autowired 
 UserDAO userDAO;
 
@@ -29,10 +39,67 @@ public ModelAndView saveUser(@ModelAttribute("user")User user)
 	ModelAndView mv=new ModelAndView();
 	user.setRole("ROLE_USER");
 	userDAO.add(user);
-	mv.setViewName("Page");
+	mv.setViewName("home");
+	return mv;	
+	}
+
+@RequestMapping(value="saveSupplier", method=RequestMethod.POST)
+public ModelAndView saveSupplier(@ModelAttribute("supplier")Supplier supplier)
+{
+	ModelAndView mv=new ModelAndView();
+	supplierDAO.add(supplier);
+	
+	mv.setViewName("home");
+	return mv;	
+	}
+
+@RequestMapping(value="saveCategory", method=RequestMethod.POST)
+public ModelAndView saveCategory(@ModelAttribute("category")Category category)
+{
+	ModelAndView mv=new ModelAndView();
+	categoryDAO.add(category);	
+	mv.setViewName("home");
+	return mv;	
+	}
+
+
+@RequestMapping(value="saveProduct", method=RequestMethod.POST)
+public ModelAndView saveProduct(@RequestParam(required=false) @ModelAttribute("product")Product product)
+{
+	ModelAndView mv=new ModelAndView();
+	product.setCategoryId(1);
+	product.setSupplierId(1);
+	product.setActive(true);
+	System.out.println("before adding product..............."+ product.getBrand());
+	productDAO.add(product);
+	
+//	mv.setViewName("home");
+	return mv;
+
+	}
+
+
+/*@RequestMapping(value="validateuser", method=RequestMethod.GET)
+public ModelAndView validateuser(@ModelAttribute("user")User user,BindingResult result)
+{
+	ModelAndView mv=new ModelAndView();
+	String email=user.getEmail();
+	String password=user.getPassword();
+	System.out.println(email + " " + password);
+	User res=userDAO.checkLogin(email, password);
+	if(res!=null)
+	{
+		mv.addObject("user", res);
+		mv.setViewName("success");
+	}
+	else
+	{
+		mv.setViewName("error");
+		
+	}
 	return mv;
 	
-}
+}*/
 
 /*@RequestMapping(value={"/","home","/index"})
 	public ModelAndView index()
@@ -93,9 +160,14 @@ public ModelAndView saveUser(@ModelAttribute("user")User user)
 		return mv;
 		
 	}
+//later add it to admin controller
+@Autowired 
+SupplierDAO supplierDAO;
+
 
 	
-*/	@RequestMapping(value="/")
+*/
+@RequestMapping(value="/")
 	public String indexFinal()
 	{
 		return "home";
@@ -120,6 +192,12 @@ public String contact()
 	return "contact";
 	
 }	
+@RequestMapping(value="/home")
+public String home()
+{
+	return "home";
+	
+}
 @RequestMapping(value="/signup")
 public String signup()
 {
@@ -127,22 +205,12 @@ public String signup()
 	
 }	
 
-
-//later add it to admin controller
-@Autowired 
-SupplierDAO supplierDAO;
-
 @RequestMapping(value="/admin")
-public ModelAndView admin()
+public String admin()
 {
-	ModelAndView mv=new ModelAndView("Page");
-	Product nProduct = new Product();
-	nProduct.setSupplierId(1);
-	nProduct.setActive(true);
-	mv.addObject("product", nProduct);
-	//mv.addObject("userClickAdmin",true);
-	return mv;
-	
+ return "admin";	
 }
+
+
 
 }

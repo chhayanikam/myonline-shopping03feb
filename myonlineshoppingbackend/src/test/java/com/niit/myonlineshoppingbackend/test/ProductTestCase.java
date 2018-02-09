@@ -45,15 +45,15 @@ private static AnnotationConfigApplicationContext context;
 		
 		
 		// reading and updating 
-		product = productDAO.get(1);
-		product.setName("Fancy1");
-		assertEquals("Something went wrong while updating the existing record!",
-				true,productDAO.update(product));		
+		//product = productDAO.get(1);
+		//product.setName("Fancy1");
+		//assertEquals("Something went wrong while updating the existing record!",
+			//	true,productDAO.update(product));		
 				
 		//assertEquals("Something went wrong while deleting the existing record!",true,productDAO.delete(product));		
 		
 		// list
-		assertEquals("Something went wrong while fetching the list of products!",3,productDAO.list().size());		
+		//assertEquals("Something went wrong while fetching the list of products!",3,productDAO.list().size());		
 			
 	}
 

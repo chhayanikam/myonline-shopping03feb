@@ -17,4 +17,7 @@ public interface UserDAO {
 	Address getBillingAddress(int userId);
 	List<Address> listShippingAddresses(int userId);
 
+	// validate User
+	 public User checkLogin(String userName, String userPassword);
+
 }

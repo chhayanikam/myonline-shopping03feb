@@ -33,19 +33,18 @@
 			    		<h3 class="panel-title">Login Form <small>Please fill the form</small></h3>
 			 			</div>
 			 			<div class="panel-body">
-			    		<sf:form role="form" action='${contextRoot}/login'  method="POST"
-							modelAttribute="validateuser" >
+			    		<form role="form"  method="GET" >
 			    			<div class="row">
 			    				<div class="col-sm-6 col-sm-offset-3">
 			    					<div class="form-group">
-			                			<sf:input type="text" path="email" id="emial" class="form-control" placeholder="Email ID" />
+			                			<input type="text" name="email" id="email" class="form-control" placeholder="Email ID" />
 			    					</div>
 			    				</div>
 			    			</div>
 			    				<div class="row">
 			    				<div class="col-sm-6 col-sm-offset-3">
 			    					<div class="form-group">
-			    						<sf:input type="password" path="password" id="password" class="form-control" placeholder="Password" />
+			    						<input type="password" name="password" id="password" class="form-control" placeholder="Password" />
 			    					</div>
 			    				</div>
 			    			</div>
@@ -54,12 +53,12 @@
 					<div class="row">	
 			    		<div class="col-sm-6  col-sm-offset-3">
 			    			<div class="form-group">			    			
-			    				<sf:input type="submit" value="Login"  path="" class="btn btn-info btn-block" style="background: #11B09B;" />
+			    				<input type="submit" value="Login"  path="" class="btn btn-info btn-block" style="background: #11B09B;" />
 			    			</div>
 			    		</div>
 			    	</div>
 			    		
-			    		</sf:form>
+			    		</form>
 				       	<div class="text-right">
        						New User - <a href="${contextRoot}/signup">Register Here</a>
        					</div>

@@ -2,6 +2,7 @@ package com.niit.daoImpl;
 
 import java.util.List;
 import org.hibernate.SessionFactory;
+import org.hibernate.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -112,6 +113,24 @@ public class UserDAOImpl implements UserDAO {
 						.setParameter("userId", userId)
 						.setParameter("isShipping", true)
 							.getResultList();
+		
+	}
+
+	@Override
+	public User checkLogin(String email, String password) {
+		String selectQuery = "FROM User WHERE email = :email AND password = :password";
+		try{
+		return sessionFactory
+				.getCurrentSession()
+					.createQuery(selectQuery,User.class)
+						.setParameter("email",email )
+						.setParameter("password", password)
+						.getSingleResult();
+		}
+		catch(Exception ex) {
+			return null;
+		}
+		
 		
 	}
 
