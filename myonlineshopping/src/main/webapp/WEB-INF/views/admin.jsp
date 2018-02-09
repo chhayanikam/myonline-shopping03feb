@@ -3,6 +3,7 @@
 <%@taglib prefix="sf" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix ="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix ="spring" uri="http://www.springframework.org/tags" %>
+<c:set var="contextRoot" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,7 +13,7 @@
  
 }
 </style>
-<title> Home Page</title>
+<title> Admin Page</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta charset="utf-8">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -20,7 +21,7 @@
 <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"> -->
 </head>
 <body>
-
+ <jsp:include page="/WEB-INF/views/header.jsp"></jsp:include>
 <div class="container">
 	<div class="col-md-6 col-sm-offset-3">
 		<div class="panel with-nav-tabs panel-default">
@@ -49,7 +50,7 @@
 				<div class="tab-content">
 
 					<div class="tab-pane fade in active" id="tab1default">
-						<sf:form class="form-horizontal" action='' method="POST"
+						<sf:form class="form-horizontal" action='${contextRoot}/admin/product'  method="POST"
 							modelAttribute="product">
 							<fieldset>
 
@@ -187,7 +188,7 @@
 					</div>
 
 					<div class="tab-pane fade" id="tab2default">
-						<sf:form class="form-horizontal" action='${contextRoot}/manage/products' method="POST">
+						<sf:form class="form-horizontal" action='${contextRoot}/admin' method="POST" modelAttribute="supplier">
 							<fieldset>
 
 								<div class="form-group">
@@ -229,10 +230,8 @@
 						</sf:form>
 					</div>
 
-
-
 					<div class="tab-pane fade" id="tab3default">
-						<sf:form class="form-horizontal" action='' method="POST">
+						<sf:form class="form-horizontal" action='${contextRoot}/admin' modelAttribute="category" method="POST">
 							<fieldset>
 
 								<div class="form-group">
@@ -296,5 +295,6 @@
 		</div>
 	</div>
 </div>
+ <jsp:include page="/WEB-INF/views/footer.jsp"></jsp:include>
 </body>
 </html>

@@ -11,11 +11,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.niit.dao.CategoryDAO;
 import com.niit.model.Category;
-//@Service
-//@Repository("categoryDAO")
+
+
 //@Transactional
 @Service
-@Repository()
+@Repository("categoryDAO")
 public class CategoryDAOImpl implements CategoryDAO{
 
 	@Autowired
@@ -53,8 +53,7 @@ String selectActiveCategory = "FROM Category WHERE active = :active";
 
 	@Override
 	public boolean update(Category category) {
-		try {
-			// add the category to the database table
+		try {			
 			sessionFactory.getCurrentSession().update(category);
 			return true;
 		} catch (Exception ex) {
@@ -65,10 +64,8 @@ String selectActiveCategory = "FROM Category WHERE active = :active";
 
 	@Override
 	public boolean delete(Category category) {
-category.setActive(false);
-		
-		try {
-			// add the category to the database table
+		category.setActive(false);		
+		try {			
 			sessionFactory.getCurrentSession().update(category);
 			return true;
 		} catch (Exception ex) {

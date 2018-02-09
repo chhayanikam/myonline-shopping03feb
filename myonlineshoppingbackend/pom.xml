@@ -33,10 +33,10 @@
 		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/javax/javaee-api -->
-		<!-- https://mvnrepository.com/artifact/org.springframework/spring-webmvc -->
+		<!-- https://mvnrepository.com/artifact/org.springframework/spring-web for MultipartFile upload -->
 		<dependency>
 			<groupId>org.springframework</groupId>
-			<artifactId>spring-webmvc</artifactId>
+			<artifactId>spring-web</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
 

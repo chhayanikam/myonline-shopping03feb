@@ -4,6 +4,7 @@
 <%@ taglib prefix ="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix ="spring" uri="http://www.springframework.org/tags" %>
 <%@taglib prefix="sf" uri="http://www.springframework.org/tags/form"%>
+<c:set var="contextRoot" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -32,18 +33,19 @@
 			    		<h3 class="panel-title">Login Form <small>Please fill the form</small></h3>
 			 			</div>
 			 			<div class="panel-body">
-			    		<sf:form role="form">
+			    		<sf:form role="form" action='${contextRoot}/login'  method="POST"
+							modelAttribute="validateuser" >
 			    			<div class="row">
 			    				<div class="col-sm-6 col-sm-offset-3">
 			    					<div class="form-group">
-			                			<sf:input type="text" path="firstName" id="firstName" class="form-control" placeholder="Email ID" />
+			                			<sf:input type="text" path="email" id="emial" class="form-control" placeholder="Email ID" />
 			    					</div>
 			    				</div>
 			    			</div>
 			    				<div class="row">
 			    				<div class="col-sm-6 col-sm-offset-3">
 			    					<div class="form-group">
-			    						<sf:input type="password" path="password" id="mobile" class="form-control" placeholder="Password" />
+			    						<sf:input type="password" path="password" id="password" class="form-control" placeholder="Password" />
 			    					</div>
 			    				</div>
 			    			</div>
@@ -58,6 +60,10 @@
 			    	</div>
 			    		
 			    		</sf:form>
+				       	<div class="text-right">
+       						New User - <a href="${contextRoot}/signup">Register Here</a>
+       					</div>
+
 			    	</div>
 	    		</div>
     		</div>

@@ -4,6 +4,7 @@
 <%@ taglib prefix ="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix ="spring" uri="http://www.springframework.org/tags" %>
 <%@taglib prefix="sf" uri="http://www.springframework.org/tags/form"%>
+<c:set var="contextRoot" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -32,16 +33,16 @@
 			    		<h3 class="panel-title">Registration Form <small>Please fill the form</small></h3>
 			 			</div>
 			 			<div class="panel-body">
-			    		<sf:form role="form">
+			    		<sf:form role="form" modelAttribute="user" action="${contextRoot}/saveUser">
 			    			<div class="row">
 			    				<div class="col-sm-6">
 			    					<div class="form-group">
-			                <input type="text" name="first_name" id="first_name" class="form-control" placeholder="First Name">
+			                <input type="text" name="firstName" id="first_name" class="form-control" placeholder="First Name">
 			    					</div>
 			    				</div>
 			    				<div class="col-sm-6">
 			    					<div class="form-group">
-			    						<input type="text" name="last_name" id="last_name" class="form-control" placeholder="Last Name">
+			    						<input type="text" name="lastName" id="last_name" class="form-control" placeholder="Last Name">
 			    					</div>
 			    				</div>
 			    			</div>
@@ -53,16 +54,16 @@
 			    			<div class="row">
 			    				<div class="col-sm-6 ">
 			    					<div class="form-group">
-			    						<input type="number" name="mobile" id="mobile" class="form-control" placeholder="Contact Number">
+			    						<input type="number" name="contactNumber" id="mobile" class="form-control" placeholder="Contact Number">
 			    					</div>
 			    				</div>
 
 			    				<div class="col-sm-6 ">
 			    					<div class="form-group">
-			    						<select name="carlist" form="carform" class="form-control">
+			    						<select name="role" form="carform" class="form-control">
 										  <option value="">Role</option>
-										  <option value="admin">Admin</option>
-										  <option value="user">User</option>
+										  <option value="ROLE_ADMIN">Admin</option>
+										  <option value="ROLE_USER">User</option>
 										</select>
 			    					</div>
 			    				</div>

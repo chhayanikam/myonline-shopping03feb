@@ -9,10 +9,15 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import org.springframework.stereotype.Component;
+import javax.persistence.Table;
+import javax.persistence.Transient;
 
-@Component
+import org.springframework.stereotype.Component;
+import org.springframework.web.multipart.MultipartFile;
+
 @Entity
+@Table(name="PRODUCT")
+@Component
 public class Product implements Serializable {
 	
 private static final long serialVersionUID = 1L;
@@ -36,8 +41,17 @@ private static final long serialVersionUID = 1L;
 	private int supplierId;
 	private int purchases;
 	private int views;
+	
+	@Transient
+	private MultipartFile file;
 	public int getId() {
 		return id;
+	}
+	public MultipartFile getFile() {
+		return file;
+	}
+	public void setFile(MultipartFile file) {
+		this.file = file;
 	}
 	public void setId(int id) {
 		this.id = id;

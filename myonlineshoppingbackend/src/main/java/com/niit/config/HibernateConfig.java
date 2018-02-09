@@ -50,8 +50,7 @@ public class HibernateConfig {
 		LocalSessionFactoryBuilder builder = new LocalSessionFactoryBuilder(dataSource);
 		
 		builder.addProperties(getHibernateProperties());
-		builder.scanPackages("com.niit.myonlineshoppingbackend.dto");
-		System.out.println("db connected......");		
+		builder.scanPackages("com.niit.model");				
 		return builder.buildSessionFactory();
 		
 	}
@@ -78,6 +77,7 @@ public class HibernateConfig {
 	@Bean
 	public HibernateTransactionManager getTransactionManager(SessionFactory sessionFactory) {
 		HibernateTransactionManager transactionManager = new HibernateTransactionManager(sessionFactory);
+		System.out.println("transaction established");
 		return transactionManager;
 	}
 	

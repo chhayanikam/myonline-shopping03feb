@@ -2,11 +2,13 @@ package com.niit.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.niit.dao.CategoryDAO;
-import com.niit.dao.ProductDAO;
+import com.niit.dao.*;
+import com.niit.model.*;
 import com.niit.daoImpl.*;
 
 @Controller
@@ -17,8 +19,22 @@ public class PageController {
 	
 	@Autowired
 	 ProductDAO productDAO;	
+
+@Autowired 
+UserDAO userDAO;
+
+@RequestMapping(value="saveUser", method=RequestMethod.POST)
+public ModelAndView saveUser(@ModelAttribute("user")User user)
+{
+	ModelAndView mv=new ModelAndView();
+	user.setRole("ROLE_USER");
+	userDAO.add(user);
+	mv.setViewName("Page");
+	return mv;
 	
-	/*@RequestMapping(value={"/","home","/index"})
+}
+
+/*@RequestMapping(value={"/","home","/index"})
 	public ModelAndView index()
 	{
 		ModelAndView mv=new ModelAndView("Page");
@@ -31,19 +47,7 @@ public class PageController {
 		
 	}
 	
-	@RequestMapping(value="/admin")
-	public ModelAndView admin()
-	{
-		ModelAndView mv=new ModelAndView("Page");
-		mv.addObject("title","Admin");
 		
-		// passing the list of Object
-		//mv.addObject("categories",categoryDAO.list());
-		mv.addObject("userClickAdmin",true);
-		return mv;
-		
-	}
-	
 	@RequestMapping(value="/signup")
 	public ModelAndView signup()
 	{
@@ -96,6 +100,8 @@ public class PageController {
 	{
 		return "home";
 	}
+
+
 @RequestMapping(value="/login")
 public String login()
 {
@@ -120,4 +126,23 @@ public String signup()
 	return "signup";
 	
 }	
-	}
+
+
+//later add it to admin controller
+@Autowired 
+SupplierDAO supplierDAO;
+
+@RequestMapping(value="/admin")
+public ModelAndView admin()
+{
+	ModelAndView mv=new ModelAndView("Page");
+	Product nProduct = new Product();
+	nProduct.setSupplierId(1);
+	nProduct.setActive(true);
+	mv.addObject("product", nProduct);
+	//mv.addObject("userClickAdmin",true);
+	return mv;
+	
+}
+
+}
