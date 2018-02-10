@@ -38,6 +38,7 @@
     </ul>
    
      <div class="collapse navbar-collapse" id="myNavbar">
+
     <ul class="nav navbar-nav">     
       <li class="dropdown">
         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Products
@@ -48,14 +49,8 @@
           <li><a href="#">Lehnga Category 3</a></li>
         </ul>
       </li>
-     
+    
     </ul>
-     <form class="navbar-form navbar-left" action="index.html">
-      <div class="form-group">
-        <input type="text" class="form-control" placeholder="Search">
-      </div>
-      <button type="submit" class="btn btn-default">Submit</button>
-    </form>
 </div>
     
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -63,7 +58,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span> 
       </button>  
-      <a class="navbar-brand" href="#">Ecommerce App</a>
+     
   </div>
    
 </div>

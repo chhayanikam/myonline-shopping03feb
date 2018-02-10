@@ -37,7 +37,9 @@
                     <div class="tab-content">
 
                         <div class="tab-pane fade in active" id="tab1default">
-                        <sf:form class="form-horizontal" modelAttribute="product" action="${contextRoot}/saveProduct" method="POST">
+                        <sf:form class="form-horizontal" modelAttribute="product" action="${contextRoot}/saveProduct" 
+                        method="POST"
+                        enctype="multipart/form-data" >
 							  <fieldset>			    
 
 							<div class="form-group">
@@ -49,14 +51,13 @@
 							      	<div class="col-sm-6">	
 							        	<select name="categoryId" class="input-xlarge form-control">
 							        		<option value="">Select Product Category</option>
-										  	<option value="saree">Saree</option>
-										  	<option value="dress">Dress</option>
+										  	<option value="1">Saree</option>
+										  	<option value="2">Dress</option>
 										  </select>
 							      </div>
 							      </div>
 							    </div>
-							</div>
-							   
+							</div>							   
 
 							<div class="form-group">
 							    <div class="control-group">
@@ -111,6 +112,19 @@
 							      	</div>
 							      	<div class="col-sm-6">	
 							        	<textarea rows="2" cols="50" id="prod_desc" name="description" class="input-xlarge form-control"></textarea>
+							      </div>
+							      </div>
+							    </div>
+							</div>
+							
+							<div class="form-group">
+							    <div class="control-group">
+							      <div class="controls">
+							      	<div class="col-sm-4">
+								      <label class="control-label"  for="file">Select a Image</label>
+							      	</div>
+							      	<div class="col-sm-6">	
+							        	<input type="file" name="file" class="input-xlarge form-control" />
 							      </div>
 							      </div>
 							    </div>

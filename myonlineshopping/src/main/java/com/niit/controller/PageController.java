@@ -1,7 +1,10 @@
 package com.niit.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +20,8 @@ import com.niit.model.Category;
 import com.niit.model.Product;
 import com.niit.model.Supplier;
 import com.niit.model.User;
+
+import util.FileUtil;
 
 @Controller
 public class PageController {
@@ -49,7 +54,7 @@ public ModelAndView saveSupplier(@ModelAttribute("supplier")Supplier supplier)
 	ModelAndView mv=new ModelAndView();
 	supplierDAO.add(supplier);
 	
-	mv.setViewName("home");
+	mv.setViewName("admin");
 	return mv;	
 	}
 
@@ -58,22 +63,24 @@ public ModelAndView saveCategory(@ModelAttribute("category")Category category)
 {
 	ModelAndView mv=new ModelAndView();
 	categoryDAO.add(category);	
-	mv.setViewName("home");
+	mv.setViewName("admin");
 	return mv;	
 	}
 
 
 @RequestMapping(value="saveProduct", method=RequestMethod.POST)
-public ModelAndView saveProduct(@RequestParam(required=false) @ModelAttribute("product")Product product)
+public ModelAndView saveProduct(@ModelAttribute("product")Product mProduct,
+		BindingResult results, Model model, HttpServletRequest request)
 {
 	ModelAndView mv=new ModelAndView();
-	product.setCategoryId(1);
-	product.setSupplierId(1);
-	product.setActive(true);
-	System.out.println("before adding product..............."+ product.getBrand());
-	productDAO.add(product);
+	productDAO.add(mProduct);
 	
-//	mv.setViewName("home");
+	 //upload the file
+	 if(!mProduct.getFile().getOriginalFilename().equals("") ){
+		FileUtil.uploadFile(request, mProduct.getFile(), mProduct.getCode()); 
+	 }
+
+	mv.setViewName("admin");
 	return mv;
 
 	}
@@ -167,12 +174,12 @@ SupplierDAO supplierDAO;
 
 	
 */
+
 @RequestMapping(value="/")
 	public String indexFinal()
 	{
 		return "home";
 	}
-
 
 @RequestMapping(value="/login")
 public String login()
@@ -210,7 +217,4 @@ public String admin()
 {
  return "admin";	
 }
-
-
-
 }
