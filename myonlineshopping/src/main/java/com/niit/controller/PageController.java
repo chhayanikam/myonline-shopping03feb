@@ -1,5 +1,7 @@
 package com.niit.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -37,6 +40,29 @@ public class PageController {
 	
 @Autowired 
 UserDAO userDAO;
+
+//only for admin
+@RequestMapping(value={"listallproducts"}, method=RequestMethod.GET)
+public ModelAndView listAllProducts()
+{
+	ModelAndView mv=new ModelAndView();
+	List<Product> listprod=productDAO.getLatestActiveProducts(7);
+    mv.addObject("listallproducts",listprod);
+	mv.setViewName("listallproducts");
+	return mv;	
+	}
+
+@RequestMapping(value={"listProductByCategory"}, method=RequestMethod.GET)
+public ModelAndView listProductByCategory(HttpServletRequest request)
+{
+	int categoryId=Integer.parseInt(request.getParameter("id"));
+	//System.out.println("_____________________"+categoryId);
+	ModelAndView mv=new ModelAndView();
+	List<Product> listprod=productDAO.listActiveProductsByCategory(categoryId);
+    mv.addObject("listprod",listprod);
+	mv.setViewName("listProducts");
+	return mv;	
+	}
 
 @RequestMapping(value="saveUser", method=RequestMethod.POST)
 public ModelAndView saveUser(@ModelAttribute("user")User user)
@@ -174,11 +200,17 @@ SupplierDAO supplierDAO;
 
 	
 */
-
+//@RequestMapping(value={"/","home","/index","listProducts"})
 @RequestMapping(value="/")
-	public String indexFinal()
+	public ModelAndView indexFinal()
 	{
-		return "home";
+	// passing the list of categories
+	ModelAndView mv=new ModelAndView("home");
+	mv.addObject("categories",categoryDAO.list());
+	return mv;
+				
+	//return "home";
+		
 	}
 
 @RequestMapping(value="/login")

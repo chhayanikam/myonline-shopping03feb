@@ -28,6 +28,12 @@ private static AnnotationConfigApplicationContext context;
 	}
 
 	@Test
+	public void testListActiveProductsByCategory() {
+		assertEquals("Something went wrong while fetching the list of products!",
+				1,productDAO.listActiveProductsByCategory(3).size());
+		} 
+	
+	/*@Test
 	public void testCRUDProduct() {
 		
 		// create operation
@@ -56,7 +62,7 @@ private static AnnotationConfigApplicationContext context;
 		//assertEquals("Something went wrong while fetching the list of products!",3,productDAO.list().size());		
 			
 	}
-
+*/
 	/*@Test
 	public void testListActiveProducts() {
 		assertEquals("Something went wrong while fetching the list of products!",
@@ -64,13 +70,7 @@ private static AnnotationConfigApplicationContext context;
 	} 
 	
 	
-	@Test
-	public void testListActiveProductsByCategory() {
-		assertEquals("Something went wrong while fetching the list of products!",
-				3,productDAO.listActiveProductsByCategory(3).size());
-		assertEquals("Something went wrong while fetching the list of products!",
-				2,productDAO.listActiveProductsByCategory(1).size());
-	} 
+	
 	
 	@Test
 	public void testGetLatestActiveProduct() {

@@ -31,10 +31,11 @@ public class CategoryTestCase {
 	@Test
 	public void testListCategory() {
 					
-		assertEquals("Successfully fetched the list of categories from the table!",1,categoryDAO.list().size());
+		assertEquals("Successfully fetched the list of categories from the table!",3,categoryDAO.list().size());
 		
 		
 	}
+	/*
 	@Test
 	public void testAddCategory() {
 		
@@ -46,7 +47,7 @@ public class CategoryTestCase {
 		
 	}
 	
-	/*
+	
 	@Test
 	public void testGetCategory() {
 		

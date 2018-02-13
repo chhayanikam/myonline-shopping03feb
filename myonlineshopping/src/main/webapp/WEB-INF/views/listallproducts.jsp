@@ -24,7 +24,7 @@
 <body>
 <jsp:include page="header.jsp"></jsp:include>
 <div>
-<sf:form class="form-horizontal" modelAttribute="listprod" action="${contextRoot}/SingleProduct" 
+<sf:form class="form-horizontal" modelAttribute="listallproducts"  
                         method="POST"
                         enctype="multipart/form-data">
 <table class="table table-striped">
@@ -38,22 +38,19 @@
   </thead>
   
   <tbody>
-    <c:if test="${empty listprod}">
+    <c:if test="${empty listallproducts}">
       <tr>
         <td colspan="8">No products to Display</td>
       </tr>
     </c:if>
-    <c:if test="${not empty listprod}">
-      <c:forEach items="${listprod}" var="p">
+    <c:if test="${not empty listallproducts}">
+      <c:forEach items="${listallproducts}" var="p">
         <tr class="">
           <td>${p.name}</td>
           <td>${p.brand}</td>
           <td>${p.description}</td>
           <td><img src='${p.code}' /> </td>
-          <td>
-            <input type=button value="View Product" />
-          </td>
-
+          
         </tr>
       </c:forEach>
     </c:if>
