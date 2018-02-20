@@ -7,6 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-  <h1>Access Denied!! </h1>
+ <jsp:include page="/WEB-INF/views/header.jsp"></jsp:include>
+<h3><i>Access Denied</i></h3>
+<jsp:include page="/WEB-INF/views/footer.jsp"></jsp:include>
 </body>
 </html>

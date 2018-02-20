@@ -27,7 +27,7 @@
 		<sf:form modelAttribute="product" action="${contextRoot}/addtocart"   method="POST"
                         enctype="multipart/form-data">
 						
-					<img name="productcode" src="<spring:url value="resources/{product.code}.jpg/"></spring:url>"
+					<img name="productcode" src="<spring:url value="resources/{product.code}.jpg/"></spring:url>" />
 					 class="img img-responsive"	>
 								<h2>${product.name}/${product.brand}/${product.description}</h2>
 								<h2>

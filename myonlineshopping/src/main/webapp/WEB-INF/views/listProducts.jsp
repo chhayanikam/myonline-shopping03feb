@@ -4,6 +4,7 @@
 <%@ taglib prefix ="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix ="spring" uri="http://www.springframework.org/tags" %>
 <c:set var="contextRoot" value="${pageContext.request.contextPath}" />
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -54,7 +55,7 @@
           <td>${p.brand}</td>
           <td>${p.description}</td>
           <td>${p.quantity} </td>
-          <td><img src='${p.code}' /> </td>
+          <td><img src="<spring:url value=resources/${p.code}.jpg></spring:url>" /> </td>
           <td>
           <input type="hidden" name="id" value="${p.id}"/>           
             <input type="submit" value="View Product Details" />

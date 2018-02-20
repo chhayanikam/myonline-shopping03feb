@@ -14,7 +14,7 @@
  
 }
 </style>
-<title> Home Page</title>
+<title> Login Page</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta charset="utf-8">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -33,11 +33,11 @@
 			    		<h3 class="panel-title">Login Form <small>Please fill the form</small></h3>
 			 			</div>
 			 			<div class="panel-body">
-			    		<form role="form"  method="GET" >
+			    		<form role="form"  method="POST" action="${contextRoot}/login" >
 			    			<div class="row">
 			    				<div class="col-sm-6 col-sm-offset-3">
 			    					<div class="form-group">
-			                			<input type="text" name="email" id="email" class="form-control" placeholder="Email ID" />
+			                			<input type="text" name="username" id="username" class="form-control" placeholder="Email ID" />
 			    					</div>
 			    				</div>
 			    			</div>
@@ -53,6 +53,7 @@
 					<div class="row">	
 			    		<div class="col-sm-6  col-sm-offset-3">
 			    			<div class="form-group">			    			
+			    			<input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
 			    				<input type="submit" value="Login"  path="" class="btn btn-info btn-block" style="background: #11B09B;" />
 			    			</div>
 			    		</div>
