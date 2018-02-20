@@ -19,16 +19,18 @@ import com.niit.dao.CategoryDAO;
 import com.niit.dao.ProductDAO;
 import com.niit.dao.SupplierDAO;
 import com.niit.dao.UserDAO;
+import com.niit.dao.CartDAO;
 import com.niit.model.Category;
 import com.niit.model.Product;
 import com.niit.model.Supplier;
 import com.niit.model.User;
+import com.niit.model.Cart;
 
 import util.FileUtil;
 
 @Controller
 public class PageController {
-	// fetch the categories from the backend project
+	
 	@Autowired
 	 CategoryDAO categoryDAO;
 	
@@ -38,10 +40,13 @@ public class PageController {
 	@Autowired
 	SupplierDAO supplierDAO;
 	
-@Autowired 
-UserDAO userDAO;
+	@Autowired 
+	UserDAO userDAO;
 
-//only for admin
+	@Autowired
+	CartDAO cartDAO;
+
+	//only for admin
 @RequestMapping(value={"listallproducts"}, method=RequestMethod.GET)
 public ModelAndView listAllProducts()
 {
@@ -52,8 +57,41 @@ public ModelAndView listAllProducts()
 	return mv;	
 	}
 
+// method to add to cart
+
+@RequestMapping(value={"addtocart"}, method=RequestMethod.POST)
+public ModelAndView AddToCart(@ModelAttribute("cart")Cart cartproduct,HttpServletRequest request)
+{
+//	int productId=Integer.parseInt(request.getParameter("id"));
+	System.out.println("In add to cart Method");
+	ModelAndView mv=new ModelAndView();
+	cartDAO.add(cartproduct);
+    mv.addObject("cart",cartproduct);
+    mv.setViewName("listProducts");
+	return mv;	
+	}
+
+// method to load single product
+@RequestMapping(value={"SingleProduct"}, method=RequestMethod.GET)
+public ModelAndView SingleProduct(@ModelAttribute("product")Product product,HttpServletRequest request)
+{
+	//int productId=product.getId();
+	int productId=Integer.parseInt(request.getParameter("id"));
+	System.out.println("_____________________"+productId);
+	ModelAndView mv=new ModelAndView();
+	Product product1=productDAO.get(productId);
+    mv.addObject("product",product1);
+	mv.setViewName("SingleProduct");
+	return mv;	
+	}
+
+
+
+
+
+
 @RequestMapping(value={"listProductByCategory"}, method=RequestMethod.GET)
-public ModelAndView listProductByCategory(HttpServletRequest request)
+public ModelAndView listProductByCategory(@ModelAttribute("product") Product product,HttpServletRequest request)
 {
 	int categoryId=Integer.parseInt(request.getParameter("id"));
 	//System.out.println("_____________________"+categoryId);

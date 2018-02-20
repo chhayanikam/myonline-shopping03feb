@@ -3,6 +3,7 @@
 
 <%@ taglib prefix ="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix ="spring" uri="http://www.springframework.org/tags" %>
+<c:set var="contextRoot" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,15 +25,17 @@
 <body>
 <jsp:include page="header.jsp"></jsp:include>
 <div>
-<sf:form class="form-horizontal" modelAttribute="listprod" action="${contextRoot}/SingleProduct" 
-                        method="POST"
+<sf:form class="form-horizontal" modelAttribute="product" action="${contextRoot}/SingleProduct" 
+                        method="GET"
                         enctype="multipart/form-data">
 <table class="table table-striped">
   <thead>
     <tr>
+       <th>Product Id</th>
       <th>Product Name</th>
       <th>Brand</th>
       <th>Product Description</th>
+      <th>Quantity In Stock</th>
       <th>Product Image</th>
     </tr>
   </thead>
@@ -46,12 +49,15 @@
     <c:if test="${not empty listprod}">
       <c:forEach items="${listprod}" var="p">
         <tr class="">
+          <td>${p.id}</td>
           <td>${p.name}</td>
           <td>${p.brand}</td>
           <td>${p.description}</td>
+          <td>${p.quantity} </td>
           <td><img src='${p.code}' /> </td>
           <td>
-            <input type=button value="View Product" />
+          <input type="hidden" name="id" value="${p.id}"/>           
+            <input type="submit" value="View Product Details" />
           </td>
 
         </tr>

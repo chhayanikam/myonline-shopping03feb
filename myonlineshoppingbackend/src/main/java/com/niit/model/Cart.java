@@ -19,18 +19,77 @@ private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY) 
-	private int id;
+	private int cartId;
+	
+	private int cartProductId;
+	
+	private double cartprice;
+	
+	private int cartQuantity;
+	
+	private String cartImage;
+	
+	private String cartProductName;
+	
+	private int user_id;
+	
 	@Column(name = "grand_total")
 	private double grandTotal;
-	@Column(name = "cart_lines")
-	private int cartLines;
 
-	public int getId() {
-		return id;
+	public int getCartId() {
+		return cartId;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setCartId(int cartId) {
+		this.cartId = cartId;
+	}
+
+	public int getCartProductId() {
+		return cartProductId;
+	}
+
+	public void setCartProductId(int cartProductId) {
+		this.cartProductId = cartProductId;
+	}
+
+	public double getCartprice() {
+		return cartprice;
+	}
+
+	public void setCartprice(double cartprice) {
+		this.cartprice = cartprice;
+	}
+
+	public int getCartQuantity() {
+		return cartQuantity;
+	}
+
+	public void setCartQuantity(int cartQuantity) {
+		this.cartQuantity = cartQuantity;
+	}
+
+	public String getCartImage() {
+		return cartImage;
+	}
+
+	public void setCartImage(String cartImage) {
+		this.cartImage = cartImage;
+	}
+
+	public String getCartProductName() {
+		return cartProductName;
+	}
+
+	public void setCartProductName(String cartProductName) {
+		this.cartProductName = cartProductName;
+	}
+
+	public int getUser_id() {
+		return user_id;
+	}
+
+	public void setUser_id(int user_id) {
+		this.user_id = user_id;
 	}
 
 	public double getGrandTotal() {
@@ -40,20 +99,8 @@ private static final long serialVersionUID = 1L;
 	public void setGrandTotal(double grandTotal) {
 		this.grandTotal = grandTotal;
 	}
-
-	public int getCartLines() {
-		return cartLines;
-	}
-
-	public void setCartLines(int cartLines) {
-		this.cartLines = cartLines;
-	}
-
-	@Override
-	public String toString() {
-		return "Cart [id=" + id + ", grandTotal=" + grandTotal + ", cartLines=" + cartLines + "]";
-	}
 	
+		
 	// linking the cart with a user
 	/*@OneToOne
 	private User user;

@@ -16,7 +16,7 @@ import org.hibernate.annotations.common.util.impl.LoggerFactory;
 import org.springframework.web.multipart.MultipartFile;
 
 public class FileUtil {
-private static final String ABS_PATH="E:\\dtfeb03\\myonline-shopping03feb\\myonlineshopping\\src\\main\\webapp\\assets\\imgs\\";
+private static final String ABS_PATH="E:\\dtfeb03\\myonline-shopping03feb\\myonlineshopping\\src\\main\\webapp\\resources\\";
 private static String REAL_PATH=null;
 //private static final Logger logger = LoggerFactory.getLogger(FileUtil.class);
 
@@ -26,7 +26,7 @@ public static boolean uploadFile(HttpServletRequest request, MultipartFile file,
 	// create the directories if it does not exist
 	
 // get the real server path
-REAL_PATH = request.getSession().getServletContext().getRealPath("/assets/images/");
+REAL_PATH = request.getSession().getServletContext().getRealPath("/resources/");
 
 	if(!new File(REAL_PATH).exists()) {
 		new File(REAL_PATH).mkdirs();
