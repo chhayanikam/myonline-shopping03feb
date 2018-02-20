@@ -62,6 +62,13 @@
 							<div class="row">
 								<div class="col-sm-6 ">
 									<div class="form-group">
+										<input type="text" name="address" id="address"
+											class="form-control" placeholder="User Address">
+									</div>
+								</div>
+							<div class="row">
+								<div class="col-sm-6 ">
+									<div class="form-group">
 										<input type="number" name="contactNumber" id="mobile"
 											class="form-control" placeholder="Contact Number">
 									</div>

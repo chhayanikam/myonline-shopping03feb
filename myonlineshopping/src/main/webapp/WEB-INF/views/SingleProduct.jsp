@@ -34,7 +34,7 @@
 									<small>Rs.</small> ${product.unitPrice}
 								</h2>
 								<h2>Supplier : ${product.supplierId}</h2>
-																																						
+																																														
 							 <input type="submit" value="Add to Cart" />								
 						
 		</sf:form>

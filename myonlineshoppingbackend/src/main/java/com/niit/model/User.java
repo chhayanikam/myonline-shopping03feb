@@ -35,6 +35,15 @@ public class User implements Serializable {
 	
 	private String email;
 
+	private String address;
+	
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
 	@Column(name = "contact_number")
 	private String contactNumber;
 	

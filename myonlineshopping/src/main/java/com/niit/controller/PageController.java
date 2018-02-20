@@ -60,14 +60,14 @@ public ModelAndView listAllProducts()
 // method to add to cart
 
 @RequestMapping(value={"addtocart"}, method=RequestMethod.POST)
-public ModelAndView AddToCart(@ModelAttribute("cart")Cart cartproduct,HttpServletRequest request)
+public ModelAndView AddToCart(@ModelAttribute("product")Cart cartproduct,HttpServletRequest request)
 {
 //	int productId=Integer.parseInt(request.getParameter("id"));
 	System.out.println("In add to cart Method");
 	ModelAndView mv=new ModelAndView();
 	cartDAO.add(cartproduct);
     mv.addObject("cart",cartproduct);
-    mv.setViewName("listProducts");
+    mv.setViewName("cart");
 	return mv;	
 	}
 
