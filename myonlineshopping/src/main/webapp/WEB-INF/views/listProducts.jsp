@@ -33,6 +33,7 @@
   <thead>
     <tr>
        <th>Product Id</th>
+       <th>Product code </th>
       <th>Product Name</th>
       <th>Brand</th>
       <th>Product Description</th>
@@ -51,11 +52,12 @@
       <c:forEach items="${listprod}" var="p">
         <tr class="">
           <td>${p.id}</td>
+          <td>${p.code}</td>
           <td>${p.name}</td>
           <td>${p.brand}</td>
           <td>${p.description}</td>
           <td>${p.quantity} </td>
-          <td><img src="<spring:url value=resources/${p.code}.jpg></spring:url>" /> </td>
+          <td><img src="<spring:url value="resources/${p.code}.jpg" ></spring:url>" height="200px" width="300px"/> </td>
           <td>
           <input type="hidden" name="id" value="${p.id}"/>           
             <input type="submit" value="View Product Details" />

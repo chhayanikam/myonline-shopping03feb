@@ -1,19 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1" session="true"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="sp" uri="http://www.springframework.org/tags"%>
 <%@taglib prefix="sf" uri="http://www.springframework.org/tags/form"%>
 <%@taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
-	<script>
-		window.userRole = '${userModel.role}';
-	</script>
 <c:set var="contextRoot" value="${pageContext.request.contextPath}" />
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title></title>
 <!-- jQuery library -->
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -23,12 +19,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
 <spring:url value="/resources/yamm.css" var="yammCSS" />
 <spring:url value="/resources/demo.css" var="demoCSS" />
 <spring:url value="/resources/font_awesome_animation.css"
 	var="font_awesome_animationCSS" />
 <spring:url value="/resources/style.css" var="styleCSS" />
+<script>
+		window.userRole = '${userModel.role}';
+	</script>
 
 </head>
 <body>
@@ -42,46 +40,46 @@
 							class="glyphicon glyphicon-home"></span> Home</a></li>
 					<li><a href="${contextRoot}/signup"><span
 							class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-					<li><a href="${contextRoot}/goTologin"><span
-							class="glyphicon glyphicon-log-in"></span> Login</a></li>
+					
 
 					<li><a href="${contextRoot}/about"> About us</a></li>
 					<li><a href="${contextRoot}/contact"><span
 							class="glyphicon glyphicon-envelope"></span> Contact us</a></li>
-
+					<li><a href="${contextRoot}/admin/listallproducts"> List All Products</a></li>
 					<security:authorize access="hasRole('ROLE_ADMIN')">
 					<li><a href="${contextRoot}/admin">Admin</a></li>
-					<li><a href="${contextRoot}/admin/listallproducts"> List All Products</a></li>
+
+				    <h4 style="color:white"><c:out value="${username}"></c:out></h4>
 				    </security:authorize>
-								
+					    <ul class="nav navbar-nav navbar-right">
+			    	<security:authorize access="isAnonymous()">                   
+					<li><a href="${contextRoot}/goTologin"><span
+							class="glyphicon glyphicon-log-in"></span> Login</a></li> 			    	
+			    	</security:authorize>
+			    	
 			    	<security:authorize access="isAuthenticated()">
-			    	  <h6 style="color:white"><c:out value="${username}"></c:out></h6>
 						<li class="dropdown" id="userModel">
 						  <a class="btn btn-default dropdown-toggle" href="javascript:void(0)" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-						    ${username}
+						    ${userModel.fullName}
 						    <span class="caret"></span>
 						  </a>
 						  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
 		                    <security:authorize access="hasRole('ROLE_USER')">
 			                    <li id="cart">
 			                        <a href="${contextRoot}/cart/show">
-			                        	<span class="glyphicon glyphicon-shopping-cart"></span>&#160;
-			                        	<span class="badge">  	<c:out value="${username}"></c:out></span> - &#8377; ${cart.grandTotal} 
+			                        	<span class="glyphicon glyphicon-shopping-cart"></span>&#160;<span class="badge">${userModel.cart.cartLines}</span> - &#8377; ${userModel.cart.grandTotal} 
 			                        </a>
 			                    </li>		     
 			                	<li role="separator" class="divider"></li>	                                   
-		                   </security:authorize>
-					<li id="logout">
+		                    </security:authorize>
+							<li id="logout">
 		                        <a href="${contextRoot}/logout">Logout</a>
 		                    </li>                    			    	
 						  </ul>		
 						</li>    			    
 			    	</security:authorize>                    
-				
-				</ul>
-				
-				
-				<div class="collapse navbar-collapse" id="myNavbar">
+			    </ul>          
+			<div class="collapse navbar-collapse" id="myNavbar">
 					<ul class="nav navbar-nav">
 				
 						<sf:form modelAttribute="categories" class="form-horizontal"

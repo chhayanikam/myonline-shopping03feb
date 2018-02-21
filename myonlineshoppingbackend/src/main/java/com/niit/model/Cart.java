@@ -88,9 +88,9 @@ private static final long serialVersionUID = 1L;
 		return user_id;
 	}
 
-	public void setUser_id(int user_id) {
+/*	public void setUser_id(int user_id) {
 		this.user_id = user_id;
-	}
+	}*/
 
 	public double getGrandTotal() {
 		return grandTotal;
@@ -99,6 +99,32 @@ private static final long serialVersionUID = 1L;
 	public void setGrandTotal(double grandTotal) {
 		this.grandTotal = grandTotal;
 	}
+
+	public Cart() 
+	{
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public Cart(int cartId, int cartProductId, double cartprice, int cartQuantity, String cartImage,
+			String cartProductName, double grandTotal) {
+		super();
+		this.cartId = cartId;
+		this.cartProductId = cartProductId;
+		this.cartprice = cartprice;
+		this.cartQuantity = cartQuantity;
+		this.cartImage = cartImage;
+		this.cartProductName = cartProductName;
+	//	this.user_id = user_id;
+		this.grandTotal = grandTotal;
+	}
+	
+	 public void ToCart(Product product) {
+	        this.cartProductId = product.getId();
+	        this.cartProductName = product.getName();
+	        this.cartprice = product.getUnitPrice();
+	        this.cartQuantity = 1;	        
+	    }
 	
 		
 	// linking the cart with a user

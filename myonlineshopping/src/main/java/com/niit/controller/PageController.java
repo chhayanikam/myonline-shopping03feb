@@ -24,7 +24,7 @@ import org.springframework.security.web.authentication.logout.SecurityContextLog
 
 import com.niit.dao.*;
 import com.niit.model.*;
-import util.FileUtil;
+//import static util.*;
 
 @Controller
 @Scope("session")
@@ -132,18 +132,18 @@ public class PageController {
 		return "error";
 	}
 	
-	@RequestMapping(value="/login")
-	public String printUser(ModelMap model) {
-      User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-      String name = user.getFirstName(); //get logged in username
-      model.addAttribute("username", name);
-      mysession.setAttribute("username", name);
-      System.out.println(mysession.getAttribute("username").toString());
-      return "hello";
+	 @RequestMapping(value="/login", method = RequestMethod.GET)
+	  public String printUser(ModelMap model) {
 
-  }
+	      User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+	      String name = user.getFirstName(); //get logged in username
+
+	      model.addAttribute("username", name);
+	      return "hello";
+
+	  }
 	
-	/*@RequestMapping(value="/logout")
+	@RequestMapping(value="/logout")
 	public String logout(HttpServletRequest request, HttpServletResponse response) {
 		// Invalidates HTTP Session, then unbinds any objects bound to it.
 	    // Removes the authentication from securitycontext 		
@@ -152,11 +152,26 @@ public class PageController {
 	        new SecurityContextLogoutHandler().logout(request, response, auth);
 	    }
 		
-		return "redirect:/login?logout";
+		return "redirect:/goTologin";
 	}	
-	
-	
-		*/
+	/*
+		
+	@RequestMapping(value = "saveProduct", method = RequestMethod.POST)
+	public ModelAndView saveProduct(@ModelAttribute("product") Product mProduct, BindingResult results, Model model,
+			HttpServletRequest request) {
+		ModelAndView mv = new ModelAndView();
+		productDAO.add(mProduct);
+
+		// upload the file
+		if (!mProduct.getFile().getOriginalFilename().equals("")) {
+			FileUtil.uploadFile(request, mProduct.getFile(), mProduct.getCode());
+		}
+
+		mv.setViewName("admin");
+		return mv;
+
+	}
+*/
 
 
 

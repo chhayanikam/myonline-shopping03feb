@@ -33,7 +33,7 @@
 			    		<h3 class="panel-title">Login Form <small>Please fill the form</small></h3>
 			 			</div>
 			 			<div class="panel-body">
-			    		<form role="form"  method="POST" action="${contextRoot}/login" >
+			    		<sf:form role="form" modelAttribute="model" method="POST" action="${contextRoot}/login" >
 			    			<div class="row">
 			    				<div class="col-sm-6 col-sm-offset-3">
 			    					<div class="form-group">
@@ -59,7 +59,7 @@
 			    		</div>
 			    	</div>
 			    		
-			    		</form>
+			    		</sf:form>
 				       	<div class="text-right">
        						New User - <a href="${contextRoot}/signup">Register Here</a>
        					</div>

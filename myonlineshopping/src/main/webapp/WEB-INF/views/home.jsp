@@ -24,10 +24,6 @@
 
 	<div class="container">
 		<div class="row">
-
-			<%-- <div class="col-md-3">
-			  <%@include file="./shared/sidebar.jsp" %>
-			</div> --%>
 			<div class="col-md-12">
 			<div class="slideshow-container">
 				<!-- Image slider end here -->

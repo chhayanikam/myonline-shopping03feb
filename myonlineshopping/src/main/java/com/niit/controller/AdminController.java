@@ -1,7 +1,5 @@
 package com.niit.controller;
-
 import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,11 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-
 import com.niit.dao.*;
 import com.niit.model.*;
-
-import util.FileUtil;
+//import util.FileUtil;
 
 @Controller
 @RequestMapping("/admin")
@@ -66,7 +62,7 @@ public class AdminController {
 			return mv;
 		}
 
-		@RequestMapping(value = "saveProduct", method = RequestMethod.POST)
+	/*	@RequestMapping(value = "saveProduct", method = RequestMethod.POST)
 		public ModelAndView saveProduct(@ModelAttribute("product") Product mProduct, BindingResult results, Model model,
 				HttpServletRequest request) {
 			ModelAndView mv = new ModelAndView();
@@ -74,12 +70,12 @@ public class AdminController {
 
 			// upload the file
 			if (!mProduct.getFile().getOriginalFilename().equals("")) {
-				FileUtil.uploadFile(request, mProduct.getFile(), mProduct.getCode());
+				util.FileUtil.uploadFile(request, mProduct.getFile(), mProduct.getCode());
 			}
 
 			mv.setViewName("admin");
 			return mv;
 
 		}
-
+*/
 }
