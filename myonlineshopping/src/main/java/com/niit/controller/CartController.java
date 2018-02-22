@@ -60,6 +60,7 @@ public class CartController {
             BigDecimal total = cartDAO.removeCartItem(list, id);
             mav.addObject("total", total);
             session.setAttribute("cart", list);
+            mav.setViewName("cart");
         }
         mav.addObject("listCart", list);
         return mav;
@@ -75,10 +76,19 @@ public class CartController {
             BigDecimal total = cartDAO.updateCartItem(list, id, quantity);
             mav.addObject("total", total);
             session.setAttribute("cart", list);
+            mav.setViewName("cart");
         }
         mav.addObject("listCart", list);
         return mav;
     }
 
-   
+// save the cart to Order Table
+    @RequestMapping(value = "saveOrder", method = RequestMethod.POST)
+	public ModelAndView saveOrder(@ModelAttribute("user") User user) {
+		ModelAndView mv = new ModelAndView();
+		// orderDAO method
+		mv.setViewName("shipping");
+		return mv;
+	}
+
 }

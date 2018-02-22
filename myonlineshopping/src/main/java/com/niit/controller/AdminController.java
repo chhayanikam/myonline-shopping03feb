@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import com.niit.dao.*;
 import com.niit.model.*;
-//import util.FileUtil;
+import com.niit.util.FileUtil;
 
 @Controller
 @RequestMapping("/admin")
@@ -35,7 +35,7 @@ public class AdminController {
 	CartDAO cartDAO;
 
 	// only for admin
-	@RequestMapping(value = { "listallproducts" }, method = RequestMethod.GET)
+	@RequestMapping(value = {"listallproducts"}, method = RequestMethod.GET)
 	public ModelAndView listAllProducts() {
 		ModelAndView mv = new ModelAndView();
 		List<Product> listprod = productDAO.getLatestActiveProducts(7);
@@ -62,7 +62,7 @@ public class AdminController {
 			return mv;
 		}
 
-	/*	@RequestMapping(value = "saveProduct", method = RequestMethod.POST)
+		@RequestMapping(value = "saveProduct", method = RequestMethod.POST)
 		public ModelAndView saveProduct(@ModelAttribute("product") Product mProduct, BindingResult results, Model model,
 				HttpServletRequest request) {
 			ModelAndView mv = new ModelAndView();
@@ -70,12 +70,12 @@ public class AdminController {
 
 			// upload the file
 			if (!mProduct.getFile().getOriginalFilename().equals("")) {
-				util.FileUtil.uploadFile(request, mProduct.getFile(), mProduct.getCode());
+				FileUtil.uploadFile(request, mProduct.getFile(), mProduct.getCode());
 			}
 
 			mv.setViewName("admin");
 			return mv;
 
 		}
-*/
+
 }

@@ -43,20 +43,20 @@
 								<div class="col-sm-6">
 									<div class="form-group">
 										<input type="text" name="firstName" id="first_name"
-											class="form-control" placeholder="First Name">
+											class="form-control" placeholder="First Name" required>
 									</div>
 								</div>
 								<div class="col-sm-6">
 									<div class="form-group">
 										<input type="text" name="lastName" id="last_name"
-											class="form-control" placeholder="Last Name">
+											class="form-control" placeholder="Last Name" required>
 									</div>
 								</div>
 							</div>
 
 							<div class="form-group">
 								<input type="email" name="email" id="email" class="form-control"
-									placeholder="Email Address">
+									placeholder="Email Address" required>
 							</div>
 
 							<div class="row">
@@ -70,7 +70,7 @@
 								<div class="col-sm-6 ">
 									<div class="form-group">
 										<input type="number" name="contactNumber" id="mobile"
-											class="form-control" placeholder="Contact Number">
+											class="form-control" placeholder="Contact Number" required>
 									</div>
 								</div>
 
@@ -89,7 +89,7 @@
 								<div class="col-sm-6">
 									<div class="form-group">
 										<input type="password" name="password" id="password"
-											class="form-control" placeholder="Password">
+											class="form-control" placeholder="Password" required>
 									</div>
 								</div>
 							</div>

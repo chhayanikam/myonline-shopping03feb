@@ -4,7 +4,8 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="sp" uri="http://www.springframework.org/tags"%>
 <%@taglib prefix="sf" uri="http://www.springframework.org/tags/form"%>
-<%@taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
+<%@taglib prefix="security"
+	uri="http://www.springframework.org/security/tags"%>
 <c:set var="contextRoot" value="${pageContext.request.contextPath}" />
 <html>
 <head>
@@ -24,9 +25,6 @@
 <spring:url value="/resources/font_awesome_animation.css"
 	var="font_awesome_animationCSS" />
 <spring:url value="/resources/style.css" var="styleCSS" />
-<script>
-		window.userRole = '${userModel.role}';
-	</script>
 
 </head>
 <body>
@@ -40,76 +38,80 @@
 							class="glyphicon glyphicon-home"></span> Home</a></li>
 					<li><a href="${contextRoot}/signup"><span
 							class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-					
+
 
 					<li><a href="${contextRoot}/about"> About us</a></li>
 					<li><a href="${contextRoot}/contact"><span
 							class="glyphicon glyphicon-envelope"></span> Contact us</a></li>
-					<li><a href="${contextRoot}/admin/listallproducts"> List All Products</a></li>
+					<li><a href="${contextRoot}/admin/listallproducts"> List
+							All Products</a></li>
 					<security:authorize access="hasRole('ROLE_ADMIN')">
-					<li><a href="${contextRoot}/admin">Admin</a></li>
+						<li><a href="${contextRoot}/admin">Admin</a></li>
 
-				    <h4 style="color:white"><c:out value="${username}"></c:out></h4>
-				    </security:authorize>
-					    <ul class="nav navbar-nav navbar-right">
-			    	<security:authorize access="isAnonymous()">                   
-					<li><a href="${contextRoot}/goTologin"><span
-							class="glyphicon glyphicon-log-in"></span> Login</a></li> 			    	
-			    	</security:authorize>
-			    	
-			    	<security:authorize access="isAuthenticated()">
-						<li class="dropdown" id="userModel">
-						  <a class="btn btn-default dropdown-toggle" href="javascript:void(0)" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-						    ${userModel.fullName}
-						    <span class="caret"></span>
-						  </a>
-						  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-		                    <security:authorize access="hasRole('ROLE_USER')">
-			                    <li id="cart">
-			                        <a href="${contextRoot}/cart/show">
-			                        	<span class="glyphicon glyphicon-shopping-cart"></span>&#160;<span class="badge">${userModel.cart.cartLines}</span> - &#8377; ${userModel.cart.grandTotal} 
-			                        </a>
-			                    </li>		     
-			                	<li role="separator" class="divider"></li>	                                   
-		                    </security:authorize>
-							<li id="logout">
-		                        <a href="${contextRoot}/logout">Logout</a>
-		                    </li>                    			    	
-						  </ul>		
-						</li>    			    
-			    	</security:authorize>                    
-			    </ul>          
-			<div class="collapse navbar-collapse" id="myNavbar">
-					<ul class="nav navbar-nav">
-				
-						<sf:form modelAttribute="categories" class="form-horizontal"
-							action="${contextRoot}/listProductByCategory" method="GET">
-				<label class="control-label" for="category" style="color: white">Select
-					Product Category</label>
-				
-							<select name="id">
-								<option>---Select----</option>
-								<c:forEach var="category" items="${categories}">
-									<option id="${category.id}" value="${category.getId()}">${category.getName()}</option>
-								</c:forEach>
-							</select>
-							<button type="submit" style="background: #11B09B;">Submit</button>
-						</sf:form>
+					</security:authorize>
+					<ul class="nav navbar-nav navbar-right">
 
+						<security:authorize access="isAnonymous()">
+							<li><a href="${contextRoot}/goTologin"><span
+									class="glyphicon glyphicon-log-in"></span> Login</a></li>
+						</security:authorize>
+
+						<security:authorize access="isAuthenticated()">
+    					<span style="color:white"> <security:authentication property="principal.username" /> </span>
+    					<li id="logout"><a href="${contextRoot}/logout">Logout</a>	</li>
+						</security:authorize>
+									
+						<security:authorize access="isAuthenticated()">
+							<li class="dropdown" id="userModel">
+							<!--a
+								class="btn btn-default dropdown-toggle"
+								href="javascript:void(0)" id="dropdownMenu1"
+								data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+									${userModel.fullName} <span class="caret"></span>
+							</a-->
+								<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+									<security:authorize access="hasRole('ROLE_USER')">
+										<li id="cart"><a href="${contextRoot}/cart/show"> <span
+												class="glyphicon glyphicon-shopping-cart"></span>&#160;<span
+												class="badge">${userModel.cart.cartLines}</span> - &#8377;
+												${userModel.cart.grandTotal}
+										</a></li>
+										<li role="separator" class="divider"></li>
+									</security:authorize>
+									
+									
+								</ul></li>
+						</security:authorize>
 					</ul>
-					<nav> <c:forEach items="${categories}" var="category">
-						<a href="${contextRoot}/listProductByCategory/${category.id}"
-							id="a_${category.name}">${category.name}</a>
-					</c:forEach>
-				 </nav>
-				</div>
+					<div class="collapse navbar-collapse" id="myNavbar">
+						<ul class="nav navbar-nav">
 
-				<button type="button" class="navbar-toggle" data-toggle="collapse"
-					data-target="#myNavbar">
-					<span class="icon-bar"></span> <span class="icon-bar"></span> <span
-						class="icon-bar"></span>
-				</button>
+							<sf:form modelAttribute="categories" class="form-horizontal"
+								action="${contextRoot}/listProductByCategory" method="GET">
+								<label class="control-label" for="category" style="color: white">Select
+									Product Category</label>
 
+								<select name="id">
+									<option>---Select----</option>
+									<c:forEach var="category" items="${categories}">
+										<option id="${category.id}" value="${category.getId()}">${category.getName()}</option>
+									</c:forEach>
+								</select>
+								<button type="submit" style="background: #11B09B;">Submit</button>
+							</sf:form>
+
+						</ul>
+						<nav> <c:forEach items="${categories}" var="category">
+							<a href="${contextRoot}/listProductByCategory/${category.id}"
+								id="a_${category.name}">${category.name}</a>
+						</c:forEach> </nav>
+					</div>
+
+					<button type="button" class="navbar-toggle" data-toggle="collapse"
+						data-target="#myNavbar">
+						<span class="icon-bar"></span> <span class="icon-bar"></span> <span
+							class="icon-bar"></span>
+					</button>
 			</div>
 
 		</div>

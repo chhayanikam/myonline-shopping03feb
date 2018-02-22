@@ -1,5 +1,6 @@
 package com.niit.controller;
 
+import java.security.Principal;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -24,7 +26,7 @@ import org.springframework.security.web.authentication.logout.SecurityContextLog
 
 import com.niit.dao.*;
 import com.niit.model.*;
-//import static util.*;
+import com.niit.util.*;
 
 @Controller
 @Scope("session")
@@ -92,38 +94,52 @@ public class PageController {
 	}
 
 	@RequestMapping(value = "/about")
-	public String about() {
-		return "about";
+	public ModelAndView about() {
+		ModelAndView mv = new ModelAndView("about");
+		mv.addObject("categories", categoryDAO.list());
+		return mv;
+		//return "about";
 
 	}
 
 	@RequestMapping(value = "/contact")
-	public String contact() {
-		return "contact";
+	public ModelAndView contact() {
+		ModelAndView mv = new ModelAndView("contact");
+		mv.addObject("categories", categoryDAO.list());
+		return mv;
 
 	}
 
 	@RequestMapping(value = "/home")
-	public String home() {
-		return "home";
+	public ModelAndView home() {
+		ModelAndView mv = new ModelAndView("contact");
+		mv.addObject("categories", categoryDAO.list());
+		return mv;
 
 	}
 
 	@RequestMapping(value = "/signup")
-	public String signup() {
-		return "signup";
+	public ModelAndView signup() {
+		ModelAndView mv = new ModelAndView("signup");
+		mv.addObject("categories", categoryDAO.list());
+		return mv;
 
 	}
-
+// when the user clicks admin populate the dropdowns for supplier and catefories
 	@RequestMapping(value = "/admin")
-	public String admin() {
-		return "admin";
+	public ModelAndView admin() {		
+		ModelAndView mv = new ModelAndView("admin");
+		mv.addObject("categories", categoryDAO.list());
+		return mv;
+
 	}
 	
 	@RequestMapping("/goTologin")
-	public String gotologin()
+	public ModelAndView gotologin()
 	{
-		return "login";
+		ModelAndView mv = new ModelAndView("login");
+		mv.addObject("categories", categoryDAO.list());
+		return mv;
 	}
 	
 	@RequestMapping("/error")
@@ -132,17 +148,25 @@ public class PageController {
 		return "error";
 	}
 	
-	 @RequestMapping(value="/login", method = RequestMethod.GET)
+	 @RequestMapping(value = "/login", method = RequestMethod.GET)
+	    @ResponseBody
+	    public String currentUserNameSimple(HttpServletRequest request) {
+	        Principal principal = request.getUserPrincipal();
+	        return principal.getName();
+	    }
+	 
+	 /*@RequestMapping(value="/login", method = RequestMethod.GET)
 	  public String printUser(ModelMap model) {
 
-	      User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-	      String name = user.getFirstName(); //get logged in username
-
+	     User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+	      //String name = obj.; //get logged in username
+	      //String address=user.getAddress();
+	      System.out.println("user Name=--------------"+ name + address);
 	      model.addAttribute("username", name);
-	      return "hello";
+	      return name;
 
 	  }
-	
+*/	
 	@RequestMapping(value="/logout")
 	public String logout(HttpServletRequest request, HttpServletResponse response) {
 		// Invalidates HTTP Session, then unbinds any objects bound to it.
@@ -154,7 +178,7 @@ public class PageController {
 		
 		return "redirect:/goTologin";
 	}	
-	/*
+	
 		
 	@RequestMapping(value = "saveProduct", method = RequestMethod.POST)
 	public ModelAndView saveProduct(@ModelAttribute("product") Product mProduct, BindingResult results, Model model,
@@ -171,7 +195,6 @@ public class PageController {
 		return mv;
 
 	}
-*/
 
 
 

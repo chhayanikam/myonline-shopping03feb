@@ -35,6 +35,7 @@
 <sf:form  modelAttribute="cart" enctype="multipart/form-data">
     <table class="table table-hover">
         <tr>
+        	<th>Product ID</th>
             <th>Name</th>
             <th>Price</th>
             <th>Quantity</th>
@@ -50,7 +51,8 @@
             </th>
         </tr>
         <c:forEach items="${listCart}" var="product">
-            <tr>                
+            <tr>   
+            <td>${product.cartId}</td>             
                 <td>${product.cartProductName}</td>
                 <td>
                     <fmt:formatNumber type="currency">
@@ -67,7 +69,7 @@
                     </fmt:formatNumber>
                 </td>
                 <td style="text-align: right">
-                    <a href="<c:url value="${contextRoot}/cart/removeCart?id=${product.cartId}"/>?id=${product.cartId}"
+                    <a href="<c:url value="${contextRoot}/removeCart?id=${product.cartId}"/>"
                        class="btn btn-danger" onclick="return confirm('Are you sure?')">Remove</a>
 
 
@@ -86,16 +88,14 @@
         <a href="<c:url value="/"/>" class="btn btn-success">Back to shopping</a>    
     </div>
     <div class="col-lg-6" style="text-align: right">
-        <a href="<c:url value="/order"/> " class="btn btn-primary">Purchase</a>
+        <a href="<c:url value="${contextRoot}/saveOrder"/> " class="btn btn-primary">Purchase</a>
     </div>
-
-
 </div>
 
 <script type="text/javascript">
 
     function update(quantity, id) {
-        window.location = "<c:url value="/cart/update"/>" + "?id=" + id + "&quantity=" + quantity;
+        window.location = "<c:url value="/updateCart"/>" + "?id=" + id + "&quantity=" + quantity;
     }
 
 </script>

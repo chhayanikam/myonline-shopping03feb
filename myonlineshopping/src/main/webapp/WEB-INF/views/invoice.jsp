@@ -21,7 +21,30 @@
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/header.jsp"></jsp:include>
-This is Invoice page
+<div>
+<div class="row">
+			<div class="col-sm-12">
+				<div class="table-responsive">
+					<table class="table">
+						<tbody>
+							<tr>
+								<td>Subtotal</td>
+								<td><i class="fa fa-inr"></i> 8100</td>
+							</tr>
+							<tr>
+								<td>Shipping Charges(Priority Tracked Delivery)</td>
+								<td><i class="fa fa-inr"></i> 0</td>
+							</tr>
+							<tr>
+								<td>Grand Total</td>
+								<td><i class="fa fa-inr"></i> 8100</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+</div>
 <jsp:include page="/WEB-INF/views/footer.jsp"></jsp:include>
 </body>
 </html>

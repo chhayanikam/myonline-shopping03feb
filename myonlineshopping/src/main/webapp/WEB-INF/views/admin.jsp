@@ -54,6 +54,8 @@
 										  	<option value="1">Saree</option>
 										  	<option value="2">Dress</option>
 										  </select>
+										  <sf:select path="categoryId" items="${categories}" itemLabel="name" itemValue="id" class="form-control"/>
+										  
 							      </div>
 							      </div>
 							    </div>
@@ -71,6 +73,8 @@
 										  	<option value="1">Supplier-1</option>
 										  	<option value="2">Supplier-2</option>
 										  </select>
+										  <sf:select path="supplierId" items="${suppliers}" itemLabel="name" itemValue="id" class="form-control"/>
+										  
 							      </div>
 							      </div>
 							    </div>
@@ -82,7 +86,7 @@
 								      <label class="control-label"  for="prod_name">Product Name</label>
 							      	</div>
 							      	<div class="col-sm-6">	
-							        	<input type="text" id="prod_name" name="name" class="input-xlarge form-control">
+							        	<input type="text" id="prod_name" name="name" class="input-xlarge form-control" required>
 							      </div>
 							      </div>
 							    </div>
@@ -97,7 +101,7 @@
 								      <label class="control-label"  for="prod_brand">Product Brand</label>
 							      	</div>
 							      	<div class="col-sm-6">	
-							        	<input type="text" id="prod_brand" name="brand" class="input-xlarge form-control">
+							        	<input type="text" id="prod_brand" name="brand" class="input-xlarge form-control" required>
 							      </div>
 							      </div>
 							    </div>
@@ -111,7 +115,7 @@
 								      <label class="control-label"  for="prod_desc">Product Description</label>
 							      	</div>
 							      	<div class="col-sm-6">	
-							        	<textarea rows="2" cols="50" id="prod_desc" name="description" class="input-xlarge form-control"></textarea>
+							        	<textarea rows="2" cols="50" id="prod_desc" name="description" class="input-xlarge form-control" required></textarea>
 							      </div>
 							      </div>
 							    </div>
@@ -136,7 +140,7 @@
 								      <label class="control-label"  for="prod_price">Product Price</label>
 							      	</div>
 							      	<div class="col-sm-6">	
-							        	<input type="text" id="prod_price" name="unitPrice" class="input-xlarge form-control">
+							        	<input type="number" id="prod_price" name="unitPrice" class="input-xlarge form-control" required>
 							      </div>
 							      </div>
 							    </div>
@@ -150,7 +154,7 @@
 								      <label class="control-label"  for="prod_qty">Product Quantity</label>
 							      	</div>
 							      	<div class="col-sm-6">	
-							        	<input type="text" id="prod_qty" name="quantity" class="input-xlarge form-control">
+							        	<input type="text" id="prod_qty" name="quantity" class="input-xlarge form-control" required>
 							      </div>
 							      </div>
 							    </div>
@@ -174,7 +178,7 @@
 								      <label class="control-label"  for="name">Supplier Name</label>
 							      	</div>
 							      	<div class="col-sm-6">	
-							        	<input type="text" id="name" name="name" class="input-xlarge form-control">
+							        	<input type="text" id="name" name="name" class="input-xlarge form-control" required>
 							      </div>
 							      </div>
 							    </div>
@@ -203,7 +207,7 @@
 								      <label class="control-label"  for="prod_views">Category Name</label>
 							      	</div>
 							      	<div class="col-sm-6">	
-							        	<input type="text" id="name" name="name" class="input-xlarge form-control">
+							        	<input type="text" id="name" name="name" class="input-xlarge form-control" required>
 							      </div>
 							      </div>
 							    </div>
@@ -216,7 +220,7 @@
 								      <label class="control-label"  for="cat_desc">Category Description</label>
 							      	</div>
 							      	<div class="col-sm-6">	
-							        	<input type="text" id="description" name="description" class="input-xlarge form-control">
+							        	<input type="text" id="description" name="description" class="input-xlarge form-control" required>
 							      </div>
 							      </div>
 							    </div>
