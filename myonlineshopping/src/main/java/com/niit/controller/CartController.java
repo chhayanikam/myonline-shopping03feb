@@ -1,94 +1,99 @@
 package com.niit.controller;
-
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.niit.dao.*;
 import com.niit.model.*;
-
+import com.niit.service.*;
 
 @Controller
-//@RequestMapping("/cart")
+@RequestMapping("/cart")
 public class CartController {
-
-	@Autowired
-	CartDAO cartDAO;
-
-	@Autowired
-	ProductDAO productDAO;
+	private final static Logger logger = LoggerFactory.getLogger(CartController.class);
 	
-	@RequestMapping(value = "addToCart", method = RequestMethod.POST)
-    public ModelAndView addToCart(@ModelAttribute("cart") Cart c ,@RequestParam int id, HttpSession session) {
-		 BigDecimal total =new BigDecimal(0);
-        ModelAndView mav = new ModelAndView();
-        Product cartproduct = productDAO.get(id);
-        Cart mycart = new Cart();
-        List<Cart> list = (List<Cart>) session.getAttribute("cart");
-        if (list == null) {
-            list = new ArrayList<Cart>();
-        }
-        if (cartproduct != null) {
-            mycart.ToCart(cartproduct);            
-            total =cartDAO.addToCart(list, mycart);
-            mav.addObject("total", total);
-            session.setAttribute("cart", list);
-            //cartDAO.ad
-        }
-        mav.addObject("listCart", list);
-        mav.setViewName("cart");
-        return mav;
-    }
-	
-	@RequestMapping(value="removeCart")
-    public ModelAndView removeCart(@RequestParam int id, HttpSession session) {
-        ModelAndView mav = new ModelAndView("/cart");
-        List<Cart> list = (List<Cart>) session.getAttribute("cart");
-        if (list != null) {
-            BigDecimal total = cartDAO.removeCartItem(list, id);
-            mav.addObject("total", total);
-            session.setAttribute("cart", list);
-            mav.setViewName("cart");
-        }
-        mav.addObject("listCart", list);
-        return mav;
-    }
-    
-    @RequestMapping(value="updateCart")
-    public ModelAndView updateCart(@RequestParam int id,
-                                   @RequestParam int quantity,
-                                   HttpSession session) {
-        ModelAndView mav = new ModelAndView("/cart");
-        List<Cart> list = (List<Cart>) session.getAttribute("cart");
-        if (list != null) {
-            BigDecimal total = cartDAO.updateCartItem(list, id, quantity);
-            mav.addObject("total", total);
-            session.setAttribute("cart", list);
-            mav.setViewName("cart");
-        }
-        mav.addObject("listCart", list);
-        return mav;
-    }
+	@Autowired
+	private CartService cartService;
+	@RequestMapping("/show")
+	public ModelAndView showCart(@RequestParam(name = "result", required = false) String result) {
+		
+		ModelAndView mv = new ModelAndView("page");
+		
+		if(result!=null) {
+			switch(result) {
+				case "added":
+					mv.addObject("message", "Product has been successfully added inside cart!");					
+					cartService.validateCartLine();
+					break;
+				case "unavailable":
+					mv.addObject("message", "Product quantity is not available!");					
+					break;
+				case "updated":
+					mv.addObject("message", "Cart has been updated successfully!");					
+					cartService.validateCartLine();
+					break;
+				case "modified":
+					mv.addObject("message", "One or more items inside cart has been modified!");
+					break;
+				case "maximum":
+					mv.addObject("message", "Maximum limit for the item has been reached!");
+					break;
+				case "deleted":
+					mv.addObject("message", "CartLine has been successfully removed!");
+					break;
 
-// save the cart to Order Table
-    @RequestMapping(value = "saveOrder", method = RequestMethod.POST)
-	public ModelAndView saveOrder(@ModelAttribute("user") User user) {
-		ModelAndView mv = new ModelAndView();
-		// orderDAO method
-		mv.setViewName("shipping");
+			}
+		}
+		else {
+			String response = cartService.validateCartLine();
+			if(response.equals("result=modified")) {
+				mv.addObject("message", "One or more items inside cart has been modified!");
+			}
+		}
+
+		mv.addObject("cartLines", cartService.getCartLines());
 		return mv;
+		
 	}
+	
 
-}
+	@RequestMapping("/{cartLineId}/update")
+	public String udpateCartLine(@PathVariable int cartLineId, @RequestParam int count) {
+		String response = cartService.manageCartLine(cartLineId, count);		
+		return "redirect:/cart/show?"+response;		
+	}
+	
+	// method for adding item to cartLine
+	@RequestMapping("/add/{productId}/product")
+	public String addCartLine(@PathVariable int productId) {
+		String response = cartService.addCartLine(productId);
+		return "redirect:/cart/show?"+response;
+	}
+	
+	@RequestMapping("/{cartLineId}/remove")
+	public String removeCartLine(@PathVariable int cartLineId) {
+		String response = cartService.removeCartLine(cartLineId);
+		return "redirect:/cart/show?"+response;
+	}
+	
+	/* after validating it redirect to checkout
+	 * if result received is success proceed to checkout 
+	 * else display the message to the user about the changes in cart page
+	 * */	
+	@RequestMapping("/validate")
+	public String validateCart() {	
+		String response = cartService.validateCartLine();
+		if(!response.equals("result=success")) {
+			return "redirect:/cart/show?"+response;
+		}
+		else {
+			return "redirect:/shipping";
+		}
+	}	
+
+	}

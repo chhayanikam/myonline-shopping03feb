@@ -55,6 +55,10 @@ public class ProductDAOImpl implements ProductDAO {
 
 	@Override
 	public boolean update(Product product) {
+		//product.setViews(0);
+		//product.setActive(true);
+		//product.setPurchases(0);
+		
 		try {			
 			sessionFactory
 					.getCurrentSession()

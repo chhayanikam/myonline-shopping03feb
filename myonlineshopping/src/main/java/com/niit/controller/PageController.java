@@ -1,7 +1,11 @@
 package com.niit.controller;
+
+import com.niit.dao.*;
+import com.niit.model.*;
+import com.niit.myutil.*;
+
 import java.security.Principal;
 import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -22,10 +26,6 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
-
-import com.niit.dao.*;
-import com.niit.model.*;
-import com.niit.util.*;
 
 @Controller
 @Scope("session")
@@ -154,8 +154,13 @@ public class PageController {
 	 @RequestMapping(value = "/login", method = RequestMethod.GET)
 	    @ResponseBody
 	    public String currentUserNameSimple(HttpServletRequest request) {
+		//below code will help to fetch email as logged in user -to print on header
 	        Principal principal = request.getUserPrincipal();
-	        return principal.getName();
+	        String email=principal.getName();
+		 // find the user by using email id - which in turn give us userId for shipping
+		   User loggedinuser=userDAO.getByEmail(email);
+		   request.getSession().setAttribute( "userSession", loggedinuser );
+	        return email;
 	    }
 	 
 	 /*@RequestMapping(value="/login", method = RequestMethod.GET)

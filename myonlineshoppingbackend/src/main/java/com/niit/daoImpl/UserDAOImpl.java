@@ -45,7 +45,7 @@ public class UserDAOImpl implements UserDAO {
 	@Transactional
 	public boolean add(User user) {
 		try {			
-			sessionFactory.getCurrentSession().persist(user);			
+			sessionFactory.getCurrentSession().persist(user);	
 			return true;
 		}
 		catch(Exception ex) {
@@ -132,6 +132,18 @@ public class UserDAOImpl implements UserDAO {
 		}
 		
 		
+	}
+
+	@Override
+	public boolean updateCart(Cart cart) {
+
+		try {			
+			sessionFactory.getCurrentSession().update(cart);			
+			return true;
+		}
+		catch(Exception ex) {
+			return false;
+		}
 	}
 
 }

@@ -24,6 +24,11 @@
 <div>
 <div class="row">
 			<div class="col-sm-12">
+			<div class="alert alert-success">
+				<h3 class="text-center">Your Order is Confirmed!!</h3>
+				<h3 class="text-center">Invoice</h3>
+			</div>
+			
 				<div class="table-responsive">
 					<table class="table">
 						<tbody>

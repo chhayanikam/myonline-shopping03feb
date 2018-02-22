@@ -10,8 +10,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-//import javax.persistence.OneToOne;
-//import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import org.springframework.stereotype.Component;
@@ -22,6 +20,15 @@ import org.springframework.stereotype.Component;
 public class User implements Serializable {
 
 	private static final long serialVersionUID = 1L;
+	
+	@OneToOne(mappedBy="user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	private Cart cart;
+	public Cart getCart() {
+		return cart;
+	}
+	public void setCart(Cart cart) {
+		this.cart = cart;
+	}
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -121,13 +128,5 @@ public class User implements Serializable {
 	}
 	
 
-	/*@OneToOne(mappedBy="user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	private Cart cart;
-	public Cart getCart() {
-		return cart;
-	}
-	public void setCart(Cart cart) {
-		this.cart = cart;
-	}*/
 	
 }

@@ -19,5 +19,5 @@ public interface UserDAO {
 
 	// validate User
 	 public User checkLogin(String userName, String userPassword);
-
+	 boolean updateCart(Cart cart);
 }

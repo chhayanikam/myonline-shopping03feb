@@ -14,7 +14,7 @@ public class UserTestCase {
 	private static AnnotationConfigApplicationContext context;
 	private static UserDAO userDAO;
 	private User user = null;
-	//private Cart cart = null;
+	private Cart cart = null;
 	//private Address address = null;
 	
 	
@@ -32,12 +32,24 @@ public class UserTestCase {
 	public void testAddUser() {		
 		user = new User() ;
 		user.setFirstName("Chhaya");
+		user.setAddress("Mumbai");
 		user.setLastName("Nikam");
 		user.setEmail("chh@gmail.com");
 		user.setContactNumber("1234512345");
 		user.setRole("ROLE_USER");
 		user.setEnabled(true);
 		user.setPassword("12345");
+		cart = new Cart();
+   
+		// linked the cart with the user
+				cart.setUser(user);
+				// link the user with the cart
+				user.setCart(cart);
+				// add the user
+					assertEquals("Failed to add the user!", true, userDAO.add(user));	
+					
+		
+   
    }	
 		
 		/*address = new Address();
@@ -49,21 +61,13 @@ public class UserTestCase {
 		address.setPostalCode("400001");
 		address.setBilling(true);*/
 		
-	//	cart = new Cart();
+	
 		
 		// linked the address with the user
 	//	address.setUser(user);
 		
-		// linked the cart with the user
-		//cart.setUser(user);
-		// link the user with the cart
-	//	user.setCart(cart);
 		
-		// add the user
-	//	assertEquals("Failed to add the user!", true, userDAO.add(user));	
-		// add the address
-		//assertEquals("Failed to add the billing address!", true, userDAO.addAddress(address));
-
+		
 				
 		// add the shipping address
 		/*address = new Address();

@@ -13,9 +13,9 @@
  <http auto-config="true">
     <intercept-url pattern="/webapp/resources/**" access="permitAll"/>
     <intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')"/>
-    <intercept-url pattern="/login" access="permitAll"/>
+    <intercept-url pattern="/goTologin" access="permitAll"/>
     
-    <form-login login-page="/login" username-parameter="username" password-parameter="password"
+    <form-login login-page="/goTologin" username-parameter="username" password-parameter="password"
     authentication-success-forward-url="/home"
 	   authentication-failure-forward-url="/error"
     />

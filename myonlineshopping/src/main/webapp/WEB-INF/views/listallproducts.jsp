@@ -3,6 +3,7 @@
 
 <%@ taglib prefix ="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix ="spring" uri="http://www.springframework.org/tags" %>
+<c:set var="contextRoot" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,6 +31,7 @@
 <table class="table table-striped">
   <thead>
     <tr>
+     <th>Product Id</th>
       <th>Product Name</th>
       <th>Brand</th>
       <th>Product Description</th>
@@ -46,11 +48,16 @@
     <c:if test="${not empty listallproducts}">
       <c:forEach items="${listallproducts}" var="p">
         <tr class="">
+        <td>${p.id}</td>
           <td>${p.name}</td>
           <td>${p.brand}</td>
           <td>${p.description}</td>
-          <td><img src='${p.code}' /> </td>
-          
+          <td><img src="<spring:url value="resources/${p.code}.jpg/"></spring:url>" width="100px" height="100px" /> </td>
+             <td><security:authorize access="hasRole('ROLE_ADMIN')">
+				<a href="${contextRoot}/admin/EditProduct?id=${p.id}" class="btn btn-success">
+				<span class="glyphicon glyphicon-pencil"></span> Edit</a>				
+			</security:authorize>	
+			 </td>      
         </tr>
       </c:forEach>
     </c:if>

@@ -43,16 +43,15 @@
 					<h2>
 						<small>Rs.</small> ${product.unitPrice}
 					</h2>
-
-
-					<input type="submit" style="background: #11B09B;"
-						value="Add to Cart" />
+					
 				</div>
 				<hr>
 				<div class="col-sm-10 col-sm-offset-2" style="margin-left: 90px">
 					<h2>Product Description</h2>
 					<h3>${product.id}/${product.name}/${product.brand}/${product.description}</h3>
 				</div>
+				<a href="${contextRoot}/cart/add/${product.id}/product" class="btn btn-success">
+				<span class="glyphicon glyphicon-shopping-cart"></span> Add to Cart</a>
 			</sf:form>
 		</div>
 	</div>

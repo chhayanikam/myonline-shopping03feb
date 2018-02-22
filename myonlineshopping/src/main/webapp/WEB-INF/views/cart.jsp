@@ -2,6 +2,7 @@
 	pageEncoding="ISO-8859-1"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<c:set var="availableCount" value="${userModel.cart.cartLines}" />
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -31,75 +32,102 @@
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/header.jsp"></jsp:include>
-		<div class="container">
-<sf:form  modelAttribute="cart" enctype="multipart/form-data">
-    <table class="table table-hover">
-        <tr>
-        	<th>Product ID</th>
-            <th>Name</th>
-            <th>Price</th>
-            <th>Quantity</th>
-            <c:if test="${total!=0}">
-                <th>
-                    Total: <fmt:formatNumber type="currency">
-                    ${total}
-                </fmt:formatNumber>
-                </th>
-            </c:if>
-            <th style="text-align: right">
-                Action
-            </th>
-        </tr>
-        <c:forEach items="${listCart}" var="product">
-            <tr>   
-            <td>${product.cartId}</td>             
-                <td>${product.cartProductName}</td>
-                <td>
-                    <fmt:formatNumber type="currency">
-                        ${product.cartprice}
-                    </fmt:formatNumber>
-                </td>
-                <td>
-                    <input type="number" id="quantity_${product.cartId}"
-                           value="${product.cartQuantity}" style="width: 50px"/>
-                </td>
-                <td>
-                    <fmt:formatNumber type="currency">
-                        ${product.cartprice.longValue()*product.cartQuantity}
-                    </fmt:formatNumber>
-                </td>
-                <td style="text-align: right">
-                    <a href="<c:url value="${contextRoot}/removeCart?id=${product.cartId}"/>"
-                       class="btn btn-danger" onclick="return confirm('Are you sure?')">Remove</a>
+<div class="container">
 
 
-                    <a href="#" class="btn btn-success"
-                       onclick="update($('#quantity_${product.cartId}').val(),${product.cartId})">Update</a>
-
-                </td>
-            </tr>
-        </c:forEach>
-    </table>
-    </sf:form>
-</div>
-<hr/>
-<div class="row">
-    <div class="col-lg-6">
-        <a href="<c:url value="/"/>" class="btn btn-success">Back to shopping</a>    
-    </div>
-    <div class="col-lg-6" style="text-align: right">
-        <a href="<c:url value="${contextRoot}/saveOrder"/> " class="btn btn-primary">Purchase</a>
-    </div>
-</div>
-
-<script type="text/javascript">
-
-    function update(quantity, id) {
-        window.location = "<c:url value="/updateCart"/>" + "?id=" + id + "&quantity=" + quantity;
-    }
-
-</script>
+	<c:if test="${not empty message}">
+		
+		<div class="alert alert-info">
+			<h3 class="text-center">${message}</h3>
+		</div>		
 	
+	</c:if>
+	
+	<c:choose>
+		<c:when test="${not empty cartLines}">
+			<table id="cart" class="table table-hover table-condensed">
+			   	<thead>
+					<tr>
+						<th style="width:50%">Product</th>
+						<th style="width:10%">Price</th>
+						<th style="width:8%">Quantity</th>
+						<th style="width:22%" class="text-center">Subtotal</th>
+						<th style="width:10%"></th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach items="${cartLines}" var="cartLine">
+					<c:if test="${cartLine.available == false}">
+						<c:set var="availableCount" value="${availableCount - 1}"/>
+					</c:if>
+					
+					<tr>
+						<td data-th="Product">
+							<div class="row">
+								<div class="col-sm-2 hidden-xs">
+									<img src="${images}/${cartLine.product.code}.jpg" alt="${cartLine.product.name}" class="img-responsive dataTableImg"/></div>
+								<div class="col-sm-10">
+									<h4 class="nomargin">${cartLine.product.name} 
+										<c:if test="${cartLine.available == false}">
+											<strong style="color:red">(Not Available)</strong> 
+										</c:if>
+									</h4>
+									<p>Brand : ${cartLine.product.brand}</p>
+									<p>Description : ${cartLine.product.description}
+								</div>
+							</div>
+						</td>
+						<td data-th="Price"> &#8377; ${cartLine.buyingPrice} /-</td>
+						<td data-th="Quantity">
+							<input type="number" id="count_${cartLine.id}" class="form-control text-center" value="${cartLine.productCount}" min="1" max="3">
+						</td>
+						<td data-th="Subtotal" class="text-center">&#8377; ${cartLine.total} /-</td>
+						<td class="actions" data-th="">
+							<c:if test="${cartLine.available == true}">
+								<button type="button" name="refreshCart" class="btn btn-info btn-sm" value="${cartLine.id}"><span class="glyphicon glyphicon-refresh"></span></button>
+							</c:if>												
+							<a href="${contextRoot}/cart/${cartLine.id}/remove" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span></a>								
+						</td>
+					</tr>
+					</c:forEach>
+				</tbody>
+				<tfoot>
+					<tr class="visible-xs">
+						<td class="text-center"><strong>Total &#8377; ${userModel.cart.grandTotal}</strong></td>
+					</tr>
+					<tr>
+						<td><a href="${contextRoot}/show/all/products" class="btn btn-warning"><span class="glyphicon glyphicon-chevron-left"></span> Continue Shopping</a></td>
+						<td colspan="2" class="hidden-xs"></td>
+						<td class="hidden-xs text-center"><strong>Total &#8377; ${userModel.cart.grandTotal}/-</strong></td>
+						
+						<c:choose>
+							<c:when test="${availableCount != 0}">
+								<td><a href="${contextRoot}/cart/validate" class="btn btn-success btn-block">Checkout <span class="glyphicon glyphicon-chevron-right"></span></a></td>
+							</c:when>							
+							<c:otherwise>
+								<td><a href="javascript:void(0)" class="btn btn-success btn-block disabled"><strike>Checkout <span class="glyphicon glyphicon-chevron-right"></span></strike></a></td>
+							</c:otherwise>
+						</c:choose>						
+					</tr>
+				</tfoot>
+			</table>
+		
+		</c:when>
+		
+		<c:otherwise>
+			
+			<div class="jumbotron">
+				
+				<h3 class="text-center">Your Cart is Empty!</h3>
+			
+			</div>
+		
+		</c:otherwise>
+	</c:choose>
+
+
+
+
 </div>
 	<jsp:include page="/WEB-INF/views/footer.jsp"></jsp:include>
 </body>

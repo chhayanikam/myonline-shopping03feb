@@ -7,13 +7,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import com.niit.dao.*;
 import com.niit.model.*;
-import com.niit.util.FileUtil;
+import com.niit.myutil.FileUtil;
+//import com.niit.util.FileUtil;
 
 @Controller
 @RequestMapping("/admin")
@@ -32,7 +34,7 @@ public class AdminController {
 	UserDAO userDAO;
 
 	@Autowired
-	CartDAO cartDAO;
+	CartLineDAO cartLineDAO;
 
 	// only for admin
 	@RequestMapping(value = {"listallproducts"}, method = RequestMethod.GET)
@@ -65,8 +67,39 @@ public class AdminController {
 			return mv;
 		}
 
+		@RequestMapping(value = "EditProduct")
+		public ModelAndView EditProduct(@RequestParam("id") int id,@ModelAttribute("product") Product mProduct, BindingResult results, Model model,
+				HttpServletRequest request)
+		{
+			Product mproduct=productDAO.get(id);
+			ModelAndView mv = new ModelAndView("EditProduct");
+			// to populate categories in add product
+			mv.addObject("categories", categoryDAO.list());
+			//to populate suppliers in add product
+			mv.addObject("suppliers",supplierDAO.list());
+			mv.addObject("product",mproduct);
+			return mv;
+			
+			
+		}
+		
+		@RequestMapping(value = "UpdateProduct", method = RequestMethod.POST)
+		public ModelAndView UpdateProduct(@ModelAttribute("product") Product product, BindingResult results, Model model,
+				HttpServletRequest request) {
+			ModelAndView mv = new ModelAndView();
+				// upload the file
+			if (!product.getFile().getOriginalFilename().equals("")) {
+				FileUtil.uploadFile(request, product.getFile(), product.getCode());
+			}
+			
+			productDAO.update(product);
+			//mv.addObject("product",nProduct);
+			mv.setViewName("listallproducts");
+			return mv;
+
+		}
 		// method to save product
-		@RequestMapping(value = "saveProduct", method = RequestMethod.POST)
+	/*	@RequestMapping(value = "saveProduct", method = RequestMethod.POST)
 		public ModelAndView saveProduct(@ModelAttribute("product") Product nProduct, BindingResult results, Model model,
 				HttpServletRequest request) {
 			ModelAndView mv = new ModelAndView();
@@ -82,4 +115,4 @@ public class AdminController {
 
 		}
 
-}
+*/}
