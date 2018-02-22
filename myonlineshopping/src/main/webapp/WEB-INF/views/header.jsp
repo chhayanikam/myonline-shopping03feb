@@ -46,7 +46,7 @@
 					<li><a href="${contextRoot}/admin/listallproducts"> List
 							All Products</a></li>
 					<security:authorize access="hasRole('ROLE_ADMIN')">
-						<li><a href="${contextRoot}/admin">Admin</a></li>
+						<li><a href="${contextRoot}/goToadmin">Admin</a></li>
 
 					</security:authorize>
 					<ul class="nav navbar-nav navbar-right">

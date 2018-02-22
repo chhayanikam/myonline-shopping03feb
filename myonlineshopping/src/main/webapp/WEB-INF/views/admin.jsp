@@ -30,7 +30,7 @@
                             <li class="active"><a href="#tab1default" data-toggle="tab" style=" color: black; ">Add Product</a></li>
                             <li><a href="#tab2default" data-toggle="tab" style=" color: black; ">Add Supplier</a></li>
                             <li><a href="#tab3default" data-toggle="tab" style=" color: black; ">Add Category</a></li>
-                            
+
                         </ul>
                 </div>
                 <div class="panel-body">
@@ -49,13 +49,7 @@
 								      <label class="control-label"  for="category">Product Category</label>
 							      	</div>
 							      	<div class="col-sm-6">	
-							        	<select name="categoryId" class="input-xlarge form-control">
-							        		<option value="">Select Product Category</option>
-										  	<option value="1">Saree</option>
-										  	<option value="2">Dress</option>
-										  </select>
-										  <sf:select path="categoryId" items="${categories}" itemLabel="name" itemValue="id" class="form-control"/>
-										  
+							          <sf:select path="categoryId" items="${categories}" itemLabel="name" itemValue="id" class="form-control"/>										  
 							      </div>
 							      </div>
 							    </div>
@@ -68,12 +62,8 @@
 								      <label class="control-label"  for="supplier">Supplier ID</label>
 							      	</div>
 							      	<div class="col-sm-6">	
-							        	<select name="supplierId" class="input-xlarge form-control">
-							        		<option value="">Select Supplier</option>
-										  	<option value="1">Supplier-1</option>
-										  	<option value="2">Supplier-2</option>
-										  </select>
-										  <sf:select path="supplierId" items="${suppliers}" itemLabel="name" itemValue="id" class="form-control"/>
+				        	
+										  <sf:select name="id" path="supplierId" items="${suppliers}" itemLabel="name" itemValue="id" class="input-xlarge form-control"/>
 										  
 							      </div>
 							      </div>
@@ -168,7 +158,7 @@
 				</sf:form>
         	</div>
                         <div class="tab-pane fade" id="tab2default">
-                        	<sf:form class="form-horizontal" modelAttribute="supplier" action="${contextRoot}/saveSupplier" method="POST">
+                        	<sf:form class="form-horizontal" modelAttribute="supplier" action="${contextRoot}/admin/saveSupplier" method="POST">
 							 	<fieldset>		    
 									
 							    <div class="form-group">
@@ -198,7 +188,7 @@
 
                         <div class="tab-pane fade" id="tab3default">
                         	
-                       	<sf:form class="form-horizontal" action="${contextRoot}/saveCategory" modelAttribute="category"  method="POST">
+                       	<sf:form class="form-horizontal" action="${contextRoot}/admin/saveCategory" modelAttribute="category"  method="POST">
 							<fieldset>
 							 	<div class="form-group">
 							    <div class="control-group">

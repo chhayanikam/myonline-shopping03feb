@@ -46,7 +46,8 @@ public class AdminController {
 
 	// only for admin - add supplier
 		@RequestMapping(value = "saveSupplier", method = RequestMethod.POST)
-		public ModelAndView saveSupplier(@ModelAttribute("supplier") Supplier supplier) {
+		public ModelAndView saveSupplier(@ModelAttribute("supplier") Supplier supplier ,@ModelAttribute("product") Product mProduct, BindingResult results, Model model,
+				HttpServletRequest request) {
 			ModelAndView mv = new ModelAndView();
 			supplierDAO.add(supplier);
 
@@ -54,25 +55,28 @@ public class AdminController {
 			return mv;
 		}
 
+		// method to save category
 		@RequestMapping(value = "saveCategory", method = RequestMethod.POST)
-		public ModelAndView saveCategory(@ModelAttribute("category") Category category) {
+		public ModelAndView saveCategory(@ModelAttribute("category") Category category,@ModelAttribute("product") Product mProduct, BindingResult results, Model model,
+				HttpServletRequest request) {
 			ModelAndView mv = new ModelAndView();
 			categoryDAO.add(category);
 			mv.setViewName("admin");
 			return mv;
 		}
 
+		// method to save product
 		@RequestMapping(value = "saveProduct", method = RequestMethod.POST)
-		public ModelAndView saveProduct(@ModelAttribute("product") Product mProduct, BindingResult results, Model model,
+		public ModelAndView saveProduct(@ModelAttribute("product") Product nProduct, BindingResult results, Model model,
 				HttpServletRequest request) {
 			ModelAndView mv = new ModelAndView();
-			productDAO.add(mProduct);
+			productDAO.add(nProduct);
 
 			// upload the file
-			if (!mProduct.getFile().getOriginalFilename().equals("")) {
-				FileUtil.uploadFile(request, mProduct.getFile(), mProduct.getCode());
+			if (!nProduct.getFile().getOriginalFilename().equals("")) {
+				FileUtil.uploadFile(request, nProduct.getFile(), nProduct.getCode());
 			}
-
+           mv.addObject("product",nProduct);
 			mv.setViewName("admin");
 			return mv;
 

@@ -1,5 +1,4 @@
 package com.niit.controller;
-
 import java.security.Principal;
 import java.util.List;
 
@@ -112,7 +111,7 @@ public class PageController {
 
 	@RequestMapping(value = "/home")
 	public ModelAndView home() {
-		ModelAndView mv = new ModelAndView("contact");
+		ModelAndView mv = new ModelAndView("home");
 		mv.addObject("categories", categoryDAO.list());
 		return mv;
 
@@ -126,10 +125,14 @@ public class PageController {
 
 	}
 // when the user clicks admin populate the dropdowns for supplier and catefories
-	@RequestMapping(value = "/admin")
-	public ModelAndView admin() {		
+	@RequestMapping(value = "/goToadmin")
+	public ModelAndView goToadmin(@ModelAttribute("product") Product mProduct, BindingResult results, Model model,
+			HttpServletRequest request) {		
 		ModelAndView mv = new ModelAndView("admin");
+		// to populate categories in add product
 		mv.addObject("categories", categoryDAO.list());
+		//to populate suppliers in add product
+		mv.addObject("suppliers",supplierDAO.list());
 		return mv;
 
 	}
@@ -190,7 +193,7 @@ public class PageController {
 		if (!mProduct.getFile().getOriginalFilename().equals("")) {
 			FileUtil.uploadFile(request, mProduct.getFile(), mProduct.getCode());
 		}
-
+		 mv.addObject("product",mProduct);
 		mv.setViewName("admin");
 		return mv;
 
