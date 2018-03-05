@@ -5,8 +5,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import com.niit.dao.UserDAO;
-import com.niit.model.Address;
-import com.niit.model.Cart;
+
 import com.niit.model.User;
 
 public class UserTestCase {
@@ -14,10 +13,7 @@ public class UserTestCase {
 	private static AnnotationConfigApplicationContext context;
 	private static UserDAO userDAO;
 	private User user = null;
-	private Cart cart = null;
-	//private Address address = null;
-	
-	
+		
 	@BeforeClass
 	public static void init() {
 		context = new AnnotationConfigApplicationContext();
@@ -39,12 +35,12 @@ public class UserTestCase {
 		user.setRole("ROLE_USER");
 		user.setEnabled(true);
 		user.setPassword("12345");
-		cart = new Cart();
+		
    
 		// linked the cart with the user
-				cart.setUser(user);
+				//cart.setUser(user);
 				// link the user with the cart
-				user.setCart(cart);
+				//user.setCart(cart);
 				// add the user
 					assertEquals("Failed to add the user!", true, userDAO.add(user));	
 					

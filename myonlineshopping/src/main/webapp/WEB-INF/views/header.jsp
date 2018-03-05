@@ -63,12 +63,12 @@
 									
 						<security:authorize access="isAuthenticated()">
 							<li class="dropdown" id="userModel">
-							<!--a
+							<a
 								class="btn btn-default dropdown-toggle"
 								href="javascript:void(0)" id="dropdownMenu1"
 								data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
 									${userModel.fullName} <span class="caret"></span>
-							</a-->
+							</a>
 								<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
 									<security:authorize access="hasRole('ROLE_USER')">
 										<li id="cart"><a href="${contextRoot}/cart/show"> <span
@@ -101,10 +101,13 @@
 							</sf:form>
 
 						</ul>
+						<!-- 
 						<nav> <c:forEach items="${categories}" var="category">
 							<a href="${contextRoot}/listProductByCategory/${category.id}"
 								id="a_${category.name}">${category.name}</a>
-						</c:forEach> </nav>
+						</c:forEach> 
+						</nav>
+						 -->
 					</div>
 
 					<button type="button" class="navbar-toggle" data-toggle="collapse"

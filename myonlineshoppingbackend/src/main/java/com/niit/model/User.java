@@ -18,17 +18,8 @@ import org.springframework.stereotype.Component;
 @Table(name="USER_DETAIL")
 @Component
 public class User implements Serializable {
-
-	private static final long serialVersionUID = 1L;
 	
-	@OneToOne(mappedBy="user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	private Cart cart;
-	public Cart getCart() {
-		return cart;
-	}
-	public void setCart(Cart cart) {
-		this.cart = cart;
-	}
+	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

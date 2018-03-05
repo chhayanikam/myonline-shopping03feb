@@ -26,7 +26,7 @@
 <body>
 <jsp:include page="header.jsp"></jsp:include>
 <div>
-<sf:form class="form-horizontal" modelAttribute="product" action="${contextRoot}/SingleProduct" 
+<sf:form class="form-horizontal" modelAttribute="product"  
                         method="GET"
                         enctype="multipart/form-data">
 <table class="table table-striped">
@@ -37,7 +37,11 @@
       <th>Product Name</th>
       <th>Brand</th>
       <th>Product Description</th>
+      <th>Product Price </th>
+      <th>Category Id </th>
+      <th> Supplier Id </th>
       <th>Quantity In Stock</th>
+      <th>Product Active</th>
       <th>Product Image</th>
     </tr>
   </thead>
@@ -56,12 +60,16 @@
           <td>${p.name}</td>
           <td>${p.brand}</td>
           <td>${p.description}</td>
+          <td>${p.unitPrice}</td>
+          <td>${p.categoryId}</td>
+          <td>${p.supplierId}</td>
           <td>${p.quantity} </td>
+          <td>${p.active} </td>
           <td><img src="<spring:url value="resources/${p.code}.jpg" ></spring:url>" height="200px" width="300px"/> </td>
-          <td>
-          <input type="hidden" name="id" value="${p.id}"/>           
-            <input type="submit" value="View Product Details" />
+          <td>              
+           <a href="<c:url value='/SingleProduct/${p.id}' />">View Item</a> 
           </td>
+          
 
         </tr>
       </c:forEach>

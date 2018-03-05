@@ -34,14 +34,12 @@ private static final long serialVersionUID = 1L;
 	private double unitPrice;
 	private int quantity;
 	@Column(name="is_active")
-	private boolean active;
+	private boolean active=true;
 	@Column(name="category_id")
 	private int categoryId;
 	@Column(name="supplier_id")
 	private int supplierId;
-	private int purchases;
-	private int views;
-	
+		
 	@Transient
 	private MultipartFile file;
 	public int getId() {
@@ -96,7 +94,7 @@ private static final long serialVersionUID = 1L;
 		return active;
 	}
 	public void setActive(boolean active) {
-		this.active = active;
+		this.active = true;
 	}
 	
 	
@@ -111,18 +109,6 @@ private static final long serialVersionUID = 1L;
 	}
 	public void setSupplierId(int supplierId) {
 		this.supplierId = supplierId;
-	}
-	public int getPurchases() {
-		return purchases;
-	}
-	public void setPurchases(int purchases) {
-		this.purchases = purchases;
-	}
-	public int getViews() {
-		return views;
-	}
-	public void setViews(int views) {
-		this.views = views;
 	}
 	public static long getSerialversionuid() {
 		return serialVersionUID;

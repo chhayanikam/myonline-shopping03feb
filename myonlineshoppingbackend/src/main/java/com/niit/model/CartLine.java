@@ -1,6 +1,7 @@
 package com.niit.model;
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,40 +18,58 @@ import org.springframework.stereotype.Component;
 public class CartLine {
 
 private static final long serialVersionUID = 1L;
+
+@Id
+@GeneratedValue(strategy = GenerationType.IDENTITY)
+private int id;
+
+
+public int getId() {
+	return id;
+}
+public void setId(int id) {
+	this.id = id;
+}
+@Column(name = "product_id")
+private int productId;
+@Column(name = "user_id")
+private int userId;
+		
+		@Column(name = "cart_id")
+		private int cartId;	
+		
+		@Column(name = "product_count")
+		private int productCount;
+		
+		private double total;
+		
+		@Column(name = "buying_price")
+		private double buyingPrice;
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
-	@OneToOne
-	private Product product;
-	@Column(name = "cart_id")
-	private int cartId;	
-	@Column(name = "product_count")
-	private int productCount;
-	private double total;
-	@Column(name = "buying_price")
-	private double buyingPrice;
+		@Column(name = "is_available")
+		private boolean available = true;
+		
+	public int getProductId() {
+		return productId;
+	}
+	public void setProductId(int productId) {
+		this.productId = productId;
+	}
+	public int getUserId() {
+		return userId;
+	}
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
+	
 	public double getBuyingPrice() {
 		return buyingPrice;
 	}
 	public void setBuyingPrice(double buyingPrice) {
 		this.buyingPrice = buyingPrice;
 	}
-	@Column(name = "is_available")
-	private boolean available = true;
 	
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
-	public Product getProduct() {
-		return product;
-	}
-	public void setProduct(Product product) {
-		this.product = product;
-	}
+		
 	public int getCartId() {
 		return cartId;
 	}
@@ -76,5 +95,7 @@ private static final long serialVersionUID = 1L;
 	public void setAvailable(boolean available) {
 		this.available = available;
 	}
+
+	
 		
 }

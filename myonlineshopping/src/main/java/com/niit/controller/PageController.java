@@ -46,12 +46,12 @@ public class PageController {
 	// create a session 
 	HttpSession mysession;
 	// method to load single product
-	@RequestMapping(value = { "SingleProduct" }, method = RequestMethod.GET)
-	public ModelAndView SingleProduct(@ModelAttribute("product") Product product, HttpServletRequest request) {
+	@RequestMapping(value ="/SingleProduct/{id}", method = RequestMethod.GET)
+	public ModelAndView SingleProduct(@PathVariable int id,@ModelAttribute("product") Product product) {
 		// int productId=product.getId();
-		int productId = Integer.parseInt(request.getParameter("id"));
+		//int productId = Integer.parseInt(request.getParameter("id"));
 		ModelAndView mv = new ModelAndView();
-		Product product1 = productDAO.get(productId);
+		Product product1 = productDAO.get(id);
 		mv.addObject("product", product1);
 		mv.setViewName("SingleProduct");
 		return mv;
@@ -70,9 +70,13 @@ public class PageController {
 	// method to add new user
 	@RequestMapping(value = "saveUser", method = RequestMethod.POST)
 	public ModelAndView saveUser(@ModelAttribute("user") User user) {
+		
 		ModelAndView mv = new ModelAndView();
 		user.setRole("ROLE_USER");
+		
+		
 		userDAO.add(user);
+		
 		mv.setViewName("home");
 		return mv;
 	}
@@ -124,7 +128,7 @@ public class PageController {
 		return mv;
 
 	}
-// when the user clicks admin populate the dropdowns for supplier and catefories
+// when the user clicks admin populate the dropdowns for supplier and categories
 	@RequestMapping(value = "/goToadmin")
 	public ModelAndView goToadmin(@ModelAttribute("product") Product mProduct, BindingResult results, Model model,
 			HttpServletRequest request) {		
@@ -153,14 +157,23 @@ public class PageController {
 	
 	 @RequestMapping(value = "/login", method = RequestMethod.GET)
 	    @ResponseBody
-	    public String currentUserNameSimple(HttpServletRequest request) {
+	    public ModelAndView currentUserNameSimple(@ModelAttribute("model") User user,HttpServletRequest request,@RequestParam(name="error", required = false)	String error,
+				@RequestParam(name="logout", required = false) String logout) {
+		 ModelAndView mv= new ModelAndView("login");
+		 if(error!=null) {
+				mv.addObject("message", "Username and Password is invalid!");
+			}
+			if(logout!=null) {
+				mv.addObject("logout", "You have logged out successfully!");
+			}
 		//below code will help to fetch email as logged in user -to print on header
 	        Principal principal = request.getUserPrincipal();
 	        String email=principal.getName();
 		 // find the user by using email id - which in turn give us userId for shipping
 		   User loggedinuser=userDAO.getByEmail(email);
 		   request.getSession().setAttribute( "userSession", loggedinuser );
-	        return email;
+	       // return email;
+		   return mv;
 	    }
 	 
 	 /*@RequestMapping(value="/login", method = RequestMethod.GET)

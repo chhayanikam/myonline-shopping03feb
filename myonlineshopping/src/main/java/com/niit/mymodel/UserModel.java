@@ -13,7 +13,7 @@ public class UserModel {
 	public void setRole(String role) {
 		this.role = role;
 	}
-	private Cart cart;
+	
 	public int getId() {
 		return id;
 	}
@@ -26,11 +26,6 @@ public class UserModel {
 	public void setFullName(String fullName) {
 		this.fullName = fullName;
 	}
-	public Cart getCart() {
-		return cart;
-	}
-	public void setCart(Cart cart) {
-		this.cart = cart;
-	}
+	
 
 }

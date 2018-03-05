@@ -29,17 +29,17 @@
 		<div class="row">
 
 			<sf:form modelAttribute="product"
-				action="${contextRoot}/addToCart?id=${product.id}" method="POST"
-				enctype="multipart/form-data">
+							enctype="multipart/form-data">
 				<div class="col-sm-6">
 					<img name="productcode"
 						src="<spring:url value="resources/${product.code}.jpg/"></spring:url>"
 						class="img img-responsive" style="width: 50%; margin-left: 90px" />
 				</div>
 				<div class="col-sm-6">
-					
+
 					<h2>Supplier : ${product.supplierId}</h2>
 					<h2>Available Quantity : ${product.quantity}</h2>
+					
 					<h2>
 						<small>Rs.</small> ${product.unitPrice}
 					</h2>
@@ -50,11 +50,13 @@
 					<h2>Product Description</h2>
 					<h3>${product.id}/${product.name}/${product.brand}/${product.description}</h3>
 				</div>
-				<a href="${contextRoot}/cart/add/${product.id}/product" class="btn btn-success">
-				<span class="glyphicon glyphicon-shopping-cart"></span> Add to Cart</a>
+				<a href="<c:url value='/cart/add/${product.id}' />"
+					class="btn btn-success"> <span class="glyphicon glyphicon-shopping-cart"></span> Add to Cart
+				</a>
+
 			</sf:form>
 		</div>
 	</div>
-<jsp:include page="footer.jsp"></jsp:include>
+	<jsp:include page="footer.jsp"></jsp:include>
 </body>
 </html>

@@ -26,6 +26,22 @@
 
 <jsp:include page="/WEB-INF/views/header.jsp"></jsp:include>
 <div class="container">
+	<c:if test="${not empty message}">
+		<div class="row">
+			<div class="col-xs-12 col-md-offset-2 col-md-8">
+				<div class="alert alert-danger fade in">${message}</div>
+			</div>
+		</div>
+	</c:if>
+         
+   	<c:if test="${not empty logout}">
+		<div class="row">
+			<div class="col-xs-12 col-md-offset-2 col-md-8">
+				<div class="alert alert-success">${logout}</div>
+			</div>
+		</div>
+	</c:if>
+
         <div class="row centered-form">
         <div class="col-sm-8 col-sm-offset-2">
         	<div class="panel panel-default">
@@ -37,14 +53,14 @@
 			    			<div class="row">
 			    				<div class="col-sm-6 col-sm-offset-3">
 			    					<div class="form-group">
-			                			<input type="text" name="username" id="username" class="form-control" placeholder="Email ID" />
+			                			<input type="text" name="username" id="username" class="form-control" placeholder="Email ID" required/>
 			    					</div>
 			    				</div>
 			    			</div>
 			    				<div class="row">
 			    				<div class="col-sm-6 col-sm-offset-3">
 			    					<div class="form-group">
-			    						<input type="password" name="password" id="password" class="form-control" placeholder="Password" />
+			    						<input type="password" name="password" id="password" class="form-control" placeholder="Password" required/>
 			    					</div>
 			    				</div>
 			    			</div>

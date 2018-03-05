@@ -19,7 +19,8 @@ public class ProductDAOImpl implements ProductDAO {
 
 	@Override
 	public Product get(int productId) {
-		try {			
+		
+		/*try {			
 			return sessionFactory
 					.getCurrentSession()
 						.get(Product.class,Integer.valueOf(productId));			
@@ -28,7 +29,9 @@ public class ProductDAOImpl implements ProductDAO {
 			ex.printStackTrace();			
 		}
 		return null;	// TODO Auto-generated method stub
-		
+*/		return sessionFactory
+		.getCurrentSession()
+		.get(Product.class,Integer.valueOf(productId));
 	}
 
 	@Override

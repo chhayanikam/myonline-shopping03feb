@@ -14,7 +14,7 @@ public interface CartLineDAO {
 	public CartLine getByCartAndProduct(int cartId, int productId);		
 		
 	// updating the cart
-	boolean updateCart(Cart cart);
+	//boolean updateCart(Cart cart);
 	
 	// list of available cartLine
 	public List<CartLine> listAvailable(int cartId);
@@ -22,5 +22,7 @@ public interface CartLineDAO {
 	// adding order details
 	boolean addOrderDetail(OrderDetail orderDetail);
 
+	public List<CartLine> listByUserId(int userId); 
 	
+	public double generateTotal(int userid);
 }
